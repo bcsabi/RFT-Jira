@@ -1,0 +1,68 @@
+.signup_body {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 500px;
+    height: 450px;
+    background-color: white;
+    border:1px solid darkgray;
+    border-radius: 1px;
+}
+
+html {
+    background-color: whitesmoke;
+}
+
+#signup_for {
+    font-family: "Arial";
+    margin-top: 2%;
+    margin-left: 15%;
+    font-size: 30px;
+}
+
+#member {
+    font-family: "Arial";
+    margin-left: 32%;
+    font-size: 12px;
+}
+
+input {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+    margin-left: 32%;
+    display: flex;
+}
+
+#signup_button {
+    background: #4CAF50;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "Arial";
+    color: white;
+    font-size: 12px;
+    padding: 10px 20px 10px 20px;
+    width: 185px ;
+    text-decoration: none;
+    margin-left: 32%;
+    border: none;
+}
+
+#signup_button:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+    cursor: hand;
+}
