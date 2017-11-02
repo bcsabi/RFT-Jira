@@ -1,0 +1,17 @@
+<html>
+<body>
+
+<p>
+    Hi <b>${username}</b>, welcome to RFT Jira!
+</p>
+
+<p>
+    Have a nice day!
+</p>
+
+<p>
+    RFT Jira Team
+</p>
+
+</body>
+</html>

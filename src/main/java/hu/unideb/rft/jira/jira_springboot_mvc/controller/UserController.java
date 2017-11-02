@@ -1,10 +1,13 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.controller;
 
+import hu.unideb.rft.jira.jira_springboot_mvc.email.RegistrationEmailThread;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.SecurityService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +26,12 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -39,6 +48,11 @@ public class UserController {
         }
 
         userService.save(userForm);
+
+        //send email
+        RegistrationEmailThread registrationEmailThread = applicationContext.getBean(RegistrationEmailThread.class);
+        registrationEmailThread.setUser(userForm);
+        threadPoolTaskExecutor.execute(registrationEmailThread);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
