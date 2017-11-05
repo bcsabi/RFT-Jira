@@ -15,6 +15,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
+    private Set<Task> task;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -84,4 +85,12 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    @OneToMany
+    @JoinTable(name = "user_task", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "task_id"))
+    public Set<Task> getTask() {
+        return task;
+    }
+
+    public void setTask(Set<Task> task) { this.task = task; }
 }
