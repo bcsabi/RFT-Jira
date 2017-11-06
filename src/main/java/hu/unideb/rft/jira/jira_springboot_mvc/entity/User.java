@@ -1,6 +1,8 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.entity;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import java.util.Set;
 

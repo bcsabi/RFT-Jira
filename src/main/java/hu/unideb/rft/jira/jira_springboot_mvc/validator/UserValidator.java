@@ -8,11 +8,17 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Component
 public class UserValidator implements Validator{
 
     @Autowired
     private UserService userService;
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -29,8 +35,14 @@ public class UserValidator implements Validator{
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty");
+        if (user.getFirstName().length() < 3 || user.getFirstName().length() > 15) {
+            errors.rejectValue("firstname", "Size.userForm.firstname");
+        }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty");
+        if (user.getLastName().length() < 3 || user.getLastName().length() > 15) {
+            errors.rejectValue("lastname", "Size.userForm.lastname");
+        }
 
         if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
@@ -45,6 +57,12 @@ public class UserValidator implements Validator{
 
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
+        }
+
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(user.getEmail());
+        if (!matcher.find())
+        {
+            errors.rejectValue("email","Wrong.email");
         }
     }
 }
