@@ -1,0 +1,10 @@
+.backlog, .taskboard {
+    float: left;
+}
+
+.backlog:hover, .taskboard:hover, .logout:hover {
+    background-color: steelblue;
+}
+.logout {
+    cursor: pointer;
+}

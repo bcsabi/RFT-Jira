@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../../resources/menu.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/backlog.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/taskboard.css">
 
     <title>RFT Jira</title>
 </head>
@@ -23,8 +23,6 @@
         </form>
     </c:if>
 </div>
-
-
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>

@@ -95,8 +95,13 @@ public class UserController {
         return "backlog";
     }
 
-    @RequestMapping(value = {"/tasktest"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/taskboard"}, method = RequestMethod.GET)
     public String tasktest(Model model,Principal user) {
+
+        User currentUser = userService.findByUsername(user.getName());
+        model.addAttribute("firstName",currentUser.getFirstName());
+        model.addAttribute("lastName",currentUser.getLastName());
+
         //Task table test
         Task a= new Task();
         a.setTaskname("valami");
@@ -105,7 +110,7 @@ public class UserController {
         a.setUsername(user.getName());
         a.setUser(userService.findByUsername(user.getName()));
         taskService.save(a);
-        return "tasktest";
+        return "taskboard";
     }
 
 }
