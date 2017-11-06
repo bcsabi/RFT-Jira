@@ -3,22 +3,28 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../../resources/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/backlog.css">
 
     <title>RFT Jira</title>
 </head>
 <body>
-<div class="container">
 
+<ul>
+    <li class="logout"><a class="logout" onclick="document.forms['logoutForm'].submit()">LOGOUT</a></li>
+    <li class="user"><a class="user">${firstName} ${lastName}</a></li>
+    <li class="backlog"><a class="backlog" href="backlog">BACKLOG</a></li>
+    <li class="taskboard"><a class="taskboard" href="tasktest">TASK BOARD</a></li>
+</ul>
+
+<div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
     </c:if>
-
 </div>
+
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>

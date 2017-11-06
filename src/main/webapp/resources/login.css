@@ -10,6 +10,10 @@
     border:1px solid darkgray;
 }
 
+.signup:hover {
+    background-color: steelblue;
+}
+
 img{
     height: 100vh;
     width:  100vw;
@@ -68,7 +72,7 @@ input {
 #login_button:hover {
     background: #3cb0fd;
     text-decoration: none;
-    cursor: hand;
+    cursor: pointer;
 }
 
 #error {

@@ -48,7 +48,7 @@ public class UserController {
         model.addAttribute("userForm", new User());
 
         if (user != null)
-            return "redirect:/welcome";
+            return "redirect:/backlog";
 
         return "signup";
     }
@@ -70,7 +70,7 @@ public class UserController {
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/backlog";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -82,14 +82,17 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         if (user != null)
-            return "redirect:/welcome";
+            return "redirect:/backlog";
 
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.GET)
     public String welcome(Model model , Principal user) {
-        return "welcome";
+        User currentUser = userService.findByUsername(user.getName());
+        model.addAttribute("firstName",currentUser.getFirstName());
+        model.addAttribute("lastName",currentUser.getLastName());
+        return "backlog";
     }
 
     @RequestMapping(value = {"/tasktest"}, method = RequestMethod.GET)
