@@ -36,12 +36,12 @@ public class UserValidator implements Validator{
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty");
         if (user.getFirstName().length() < 3 || user.getFirstName().length() > 15) {
-            errors.rejectValue("firstname", "Size.userForm.firstname");
+            errors.rejectValue("firstName", "Size.userForm.firstname");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty");
         if (user.getLastName().length() < 3 || user.getLastName().length() > 15) {
-            errors.rejectValue("lastname", "Size.userForm.lastname");
+            errors.rejectValue("lastName", "Size.userForm.lastname");
         }
 
         if (userService.findByUsername(user.getUsername()) != null) {
