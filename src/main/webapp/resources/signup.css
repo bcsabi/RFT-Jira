@@ -1,15 +1,15 @@
 .signup_body {
-    position: absolute;
+    position: relative;
     margin: auto;
-    top: 0;
+    top: 60px;
     right: 0;
     bottom: 0;
     left: 0;
     width: 500px;
-    height: 450px;
     background-color: white;
     border:1px solid darkgray;
     border-radius: 1px;
+    height: auto;
 }
 
 html {
@@ -43,6 +43,7 @@ input {
     padding: 7px;
     outline: none;
     margin-left: 32%;
+    margin-top: 3%;
     display: flex;
 }
 
@@ -58,6 +59,7 @@ input {
     width: 185px ;
     text-decoration: none;
     margin-left: 32%;
+    margin-top: 3%;
     border: none;
 }
 
@@ -65,4 +67,12 @@ input {
     background: #3cb0fd;
     text-decoration: none;
     cursor: hand;
+}
+
+#error {
+    display: inline-block;
+    color: red;
+    font-family: "Arial";
+    font-size: 10px;
+    margin-left: 32%;
 }

@@ -17,20 +17,21 @@
 </ul>
 
 <div class="container">
-    <form method="POST" action="login" class="login-body">
-        <p id="welcome">Welcome to our SDT project!</p>
-        <p id="loginto">Log in to start.</p>
-        <div class="form-group ${error != null ? 'has-error' : ''}">
-            <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
-            <span>${error}</span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <h4 class="text-center"><a href="signup">Create an account</a></h4>
+    <form method="POST" action="login"  >
+        <div class="login_body">
+            <p id="welcome">Welcome to our SDT project!</p>
+            <p id="loginto">Log in to start.</p>
+            <div class="form-group ${error != null ? 'has-error' : ''}">
+                <input name="username" type="text" class="form-control" placeholder="Username"
+                       autofocus="true"/><br>
+                <input name="password" type="password" class="form-control" placeholder="Password"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <span id="logged_out">${message}</span>
+                <span id="error">${error}</span>
+            </div>
+            <button id="login_button" type="submit">Log in</button><br>
+            <p id="notmember">Not a member? <a class="signup_text" href="signup">Sign up</a> for an account.</p>
         </div>
-        <p id="notmember">Not a member? <a class="signup_text" href="signup">Sign up</a> for an account.</p>
-        <button id="login_button" type="submit">Log in</button>
     </form>
 </div>
 <!-- /container -->

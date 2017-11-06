@@ -7,13 +7,12 @@
     left: 0;
     width: 650px;
     height: 350px;
-    background-color: white;
     border:1px solid darkgray;
-    border-radius: 1px;
 }
 
-html {
-    background-color: whitesmoke;
+img{
+    height: 100vh;
+    width:  100vw;
 }
 
 input {
@@ -46,9 +45,8 @@ input {
     margin-left: 35%;
 }
 
-#remember {
-    font-family: "Arial";
-    font-size: 16px;
+#notmember {
+    margin-top: 7%;
 }
 
 #login_button {
@@ -60,8 +58,10 @@ input {
     color: white;
     font-size: 12px;
     padding: 10px 20px 10px 20px;
+    width: 185px ;
     text-decoration: none;
     margin-left: 35%;
+    margin-top: 3%;
     border: none;
 }
 
@@ -70,8 +70,16 @@ input {
     text-decoration: none;
     cursor: hand;
 }
-#password_checkbox {
-    margin-left: 35%;
-    display: inline-block;
+
+#error {
+    font-family: "Arial";
+    color: red;
+    font-size: 12px;
 }
 
+#logged_out {
+    font-family: "Arial";
+    color: blue;
+    font-size: 12px;
+    margin-left: 35%;
+}
