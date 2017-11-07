@@ -95,8 +95,16 @@ public class UserController {
         return "backlog";
     }
 
+    @RequestMapping(value = {"/manage_projects"}, method = RequestMethod.GET)
+    public String manage_projects(Model model, Principal user) {
+        User currentUser = userService.findByUsername(user.getName());
+        model.addAttribute("firstName",currentUser.getFirstName());
+        model.addAttribute("lastName",currentUser.getLastName());
+        return "manage_projects";
+    }
+
     @RequestMapping(value = {"/taskboard"}, method = RequestMethod.GET)
-    public String tasktest(Model model,Principal user) {
+    public String taskboard(Model model,Principal user) {
 
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());

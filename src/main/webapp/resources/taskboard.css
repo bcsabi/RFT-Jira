@@ -1,8 +1,8 @@
-.backlog, .taskboard {
+.backlog, .taskboard,.projects{
     float: left;
 }
 
-.backlog:hover, .taskboard:hover, .logout:hover {
+.backlog:hover, .taskboard:hover, .logout:hover, .projects:hover{
     background-color: steelblue;
 }
 .logout {

@@ -1,0 +1,73 @@
+.backlog, .taskboard,.projects{
+    float: left;
+}
+
+.backlog:hover, .taskboard:hover, .logout:hover, .projects:hover{
+    background-color: steelblue;
+}
+.logout {
+    cursor: pointer;
+}
+
+textarea {
+    padding: 7px;
+    outline: none;
+    margin-left: 5%;
+    margin-top: 3%;
+    display: flex;
+    resize: none;
+}
+
+.new_project {
+    position: absolute;
+    margin-top: 5%;
+    display: inline-block;
+}
+
+.my_projects {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 300px;
+    display: inline-block;
+
+}
+
+#project_name, #project_description {
+    width: 300px;
+}
+
+#project_description {
+    height: 300px;
+}
+
+#create_project_button {
+    background: #4CAF50;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "Arial";
+    color: white;
+    font-size: 12px;
+    padding: 10px 20px 10px 20px;
+    width: 315px ;
+    text-decoration: none;
+    margin-left: 5%;
+    margin-top: 3%;
+    border: none;
+}
+
+#create_project_button:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#new_project {
+    font-family: Arial;
+    margin-left: 100px;
+}
+
+#my_projects {
+    font-family: Arial;
+    margin-left: 500px;
+}
