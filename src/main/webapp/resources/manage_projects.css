@@ -1,4 +1,4 @@
-.backlog, .taskboard,.projects{
+.backlog, .taskboard, .projects{
     float: left;
 }
 
@@ -20,14 +20,16 @@ textarea {
 
 .new_project {
     position: absolute;
-    margin-top: 5%;
+    margin-top: 70px;
     display: inline-block;
 }
 
 .my_projects {
     position: absolute;
-    margin-top: 5%;
-    margin-left: 300px;
+    margin-top: 70px;
+    margin-left: 450px;
+    width: 1000px;
+    height: auto;
     display: inline-block;
 
 }
@@ -69,5 +71,5 @@ textarea {
 
 #my_projects {
     font-family: Arial;
-    margin-left: 500px;
+    margin-left: 400px;
 }
