@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../../resources/menu.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/manage_projects.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/profile.css">
 
     <title>RFT Jira</title>
 </head>
@@ -11,21 +14,22 @@
 
 <ul>
     <li class="logout"><a class="logout" onclick="document.forms['logoutForm'].submit()">LOGOUT</a></li>
-    <li class="user"><a class="user" href="profile">${firstName} ${lastName}</a></li>
+    <li class="user"><a class="user" href="profil">${firstName} ${lastName}</a></li>
     <li class="projects"><a class="projects" href="manage_projects">MANAGE PROJECTS</a></li>
     <li class="backlog"><a class="backlog" href="backlog">BACKLOG</a></li>
     <li class="taskboard"><a class="taskboard" href="taskboard">TASK BOARD</a></li>
 </ul>
 
-<div class="new_project">
-    <h2 id="new_project">New project</h2>
-    <textarea id="project_name" type="text" placeholder="Project name"></textarea>
-    <textarea id="project_description" type="text" placeholder="Project description"></textarea>
-    <button id="create_project_button" type="submit">CREATE PROJECT</button>
-</div>
+<div class="profile">
+    <h2 id="username">${firstName} ${lastName}</h2>
+    <p id="email">${email}</p>
+    <h3>Change password</h3>
 
-<div class="my_projects">
-    <h2 id="my_projects">My projects</h2>
+    <input name="new_password" type="text" placeholder="New password"/>
+    <input name="confrim_password" type="text" placeholder="Confirm your password"/>
+    <input name="current_password" type="text" placeholder="Current password"/>
+
+    <button id="save_button" type="submit">Save changes</button>
 </div>
 
 <div class="container">
@@ -35,6 +39,8 @@
         </form>
     </c:if>
 </div>
+
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>

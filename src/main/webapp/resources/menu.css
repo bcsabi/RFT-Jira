@@ -28,6 +28,14 @@ li a {
     font-family: "Arial";
 }
 
-.user:hover {
+.backlog, .taskboard, .projects{
+    float: left;
+}
+
+.logout {
+    cursor: pointer;
+}
+
+.user:hover .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover {
     background-color: steelblue;
 }

@@ -1,7 +1,7 @@
 .login_body {
     position: relative;
     margin: auto;
-    top: 60px ;
+    top: 70px ;
     right: 0;
     bottom: 0;
     left: 0;
@@ -62,7 +62,7 @@ input {
     color: white;
     font-size: 12px;
     padding: 10px 20px 10px 20px;
-    width: 185px ;
+    width: 180px ;
     text-decoration: none;
     margin-left: 35%;
     margin-top: 3%;

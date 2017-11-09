@@ -121,4 +121,14 @@ public class UserController {
         return "taskboard";
     }
 
+    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
+    public String profile(Model model, Principal user) {
+        User currentUser = userService.findByUsername(user.getName());
+        model.addAttribute("firstName",currentUser.getFirstName());
+        model.addAttribute("lastName",currentUser.getLastName());
+        model.addAttribute("email", currentUser.getEmail());
+
+        return "profile";
+    }
+
 }
