@@ -36,6 +36,6 @@ li a {
     cursor: pointer;
 }
 
-.user:hover .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover {
+.user:hover, .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover {
     background-color: steelblue;
 }
