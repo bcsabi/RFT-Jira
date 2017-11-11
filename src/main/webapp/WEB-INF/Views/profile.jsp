@@ -14,7 +14,7 @@
 
 <ul>
     <li class="logout"><a class="logout" onclick="document.forms['logoutForm'].submit()">LOGOUT</a></li>
-    <li class="user"><a class="user" href="profil">${firstName} ${lastName}</a></li>
+    <li class="user"><a class="user" href="profile">${firstName} ${lastName}</a></li>
     <li class="projects"><a class="projects" href="manage_projects">MANAGE PROJECTS</a></li>
     <li class="backlog"><a class="backlog" href="backlog">BACKLOG</a></li>
     <li class="taskboard"><a class="taskboard" href="taskboard">TASK BOARD</a></li>
@@ -25,11 +25,13 @@
     <p id="email">${email}</p>
     <h3>Change password</h3>
 
-    <input name="new_password" type="text" placeholder="New password"/>
-    <input name="confrim_password" type="text" placeholder="Confirm your password"/>
-    <input name="current_password" type="text" placeholder="Current password"/>
-
+    <form:form method="POST" modelAttribute="changePassForm" class="change_pass">
+        <input name="new_password" type="text" placeholder="New password"/>
+        <input name="confirm_password" type="text" placeholder="Confirm your password"/>
+        <input name="current_password" type="text" placeholder="Current password"/>
     <button id="save_button" type="submit">Save changes</button>
+    </form:form>
+
 </div>
 
 <div class="container">

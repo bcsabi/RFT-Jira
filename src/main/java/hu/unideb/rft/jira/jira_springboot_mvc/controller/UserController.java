@@ -20,6 +20,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.security.Principal;
 import java.util.List;
@@ -156,6 +158,24 @@ public class UserController {
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         model.addAttribute("email", currentUser.getEmail());
+
+        return "profile";
+    }
+
+    @RequestMapping(value = {"/profile"}, method = RequestMethod.POST)
+    public String profilepost(Model model, Principal user, @RequestParam String new_password ,
+        @RequestParam String confirm_password, @RequestParam String current_password) {
+        User currentUser = userService.findByUsername(user.getName());
+        model.addAttribute("firstName",currentUser.getFirstName());
+        model.addAttribute("lastName",currentUser.getLastName());
+        model.addAttribute("email", currentUser.getEmail());
+
+        BCryptPasswordEncoder a = new BCryptPasswordEncoder();
+        if ( new_password.equals(confirm_password) && a.matches(current_password,currentUser.getPassword()))
+        {
+            currentUser.setPassword(new_password);
+            userService.save(currentUser);
+        }
 
         return "profile";
     }
