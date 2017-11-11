@@ -6,6 +6,8 @@ import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
@@ -22,4 +24,6 @@ public class ProjectServiceImpl implements ProjectService {
         return Projectrepository.findByProjectName(projectName);
     }
 
+    @Override
+    public List<Project> findByUsername(String userName) { return Projectrepository.findByUsername(userName); }
 }

@@ -8,6 +8,7 @@ import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.SecurityService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
+import hu.unideb.rft.jira.jira_springboot_mvc.validator.ProjectValidator;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.TaskValidator;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class UserController {
 
     @Autowired
     private TaskValidator taskValidator;
+
+    @Autowired
+    private ProjectValidator projectValidator;
 
     @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
@@ -102,10 +106,27 @@ public class UserController {
 
     @RequestMapping(value = {"/manage_projects"}, method = RequestMethod.GET)
     public String manage_projects(Model model, Principal user) {
+        model.addAttribute("projectForm", new Project());
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         return "manage_projects";
+    }
+
+    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST)
+    public String createProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user) {
+        User currentUser = userService.findByUsername(user.getName());
+        projectForm.setUsername(currentUser.getUsername());
+        projectForm.setUser(currentUser);
+        projectValidator.validate(projectForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "manage_projects";
+        }
+
+        projectService.save(projectForm);
+
+        return "redirect:/manage_projects";
     }
 
     @RequestMapping(value = {"/taskboard"}, method = RequestMethod.GET)

@@ -36,6 +36,8 @@ textarea {
 
 #project_name, #project_description {
     width: 300px;
+    margin-top:3%;
+    margin-left:5%;
 }
 
 #project_description {

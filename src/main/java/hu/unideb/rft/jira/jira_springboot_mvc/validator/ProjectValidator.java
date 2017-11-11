@@ -3,11 +3,15 @@ package hu.unideb.rft.jira.jira_springboot_mvc.validator;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
+import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ProjectValidator implements Validator{
@@ -15,7 +19,8 @@ public class ProjectValidator implements Validator{
     @Autowired
     private ProjectService projectService;
 
-    private User user;
+    @Autowired
+    private UserService userService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -30,10 +35,6 @@ public class ProjectValidator implements Validator{
         if (project.getProjectName().length() >= 30 || project.getProjectName().length() <= 5) {
             errors.rejectValue("projectName", "Size.projectForm.projectname");
         }
-        if (projectService.findByProjectName(project.getProjectName()) != null && project.getProjectName() !=
-                user.getUsername()) {
-            errors.rejectValue("projectName", "Duplicate.projectForm.projectname");
-        }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectDescription", "NotEmpty");
         if (project.getProjectDescription().length() > 200)
@@ -41,7 +42,16 @@ public class ProjectValidator implements Validator{
             errors.rejectValue("projectDescription","Size.projectForm.projectdescription");
         }
 
-    }
+        List<Project> list = projectService.findByUsername(project.getUsername());
+        List<String> lista2 = new ArrayList<>();
+        for(Project proj : list)
+            lista2.add(proj.getProjectName());
+        for(String projectname : lista2) {
+            if (projectname.equals(project.getProjectName())) {
+                errors.rejectValue("projectName", "Duplicate.projectForm.projectname");
+                break;
+            }
+        }
 
-    void setUser(User user) { this.user = user; }
+    }
 }

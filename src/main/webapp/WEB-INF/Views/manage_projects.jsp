@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -17,11 +19,27 @@
     <li class="taskboard"><a class="taskboard" href="taskboard">TASK BOARD</a></li>
 </ul>
 
+
 <div class="new_project">
     <h2 id="new_project">New project</h2>
-    <textarea id="project_name" type="text" placeholder="Project name"></textarea>
-    <textarea id="project_description" type="text" placeholder="Project description"></textarea>
-    <button id="create_project_button" type="submit">CREATE PROJECT</button>
+    <form:form method="POST" modelAttribute="projectForm" class="create_project_body">
+        <%--
+<textarea id="project_name" type="text" placeholder="Project name"></textarea>
+<textarea id="project_description" type="text" placeholder="Project description"></textarea>
+<button id="create_project_button" type="submit">CREATE PROJECT</button>
+--%>
+        <spring:bind path="projectName">
+            <form:input id="project_name" type="text" path="projectName"  placeholder="Project Name"
+                        autofocus="true"></form:input>
+            <form:errors id="error" path="projectName"></form:errors>
+        </spring:bind>
+        <spring:bind path="projectDescription">
+            <form:input type="text" id="project_description" path="projectDescription"  placeholder="Project Description"
+                        autofocus="true"></form:input>
+            <form:errors id="error" path="projectDescription"></form:errors>
+        </spring:bind>
+        <button id="create_project_button" type="submit">CREATE PROJECT</button>
+    </form:form>
 </div>
 
 <div class="my_projects">
