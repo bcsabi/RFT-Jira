@@ -26,9 +26,9 @@
     <h3>Change password</h3>
 
     <form:form method="POST" modelAttribute="changePassForm" class="change_pass">
-        <input name="new_password" type="text" placeholder="New password"/>
-        <input name="confirm_password" type="text" placeholder="Confirm your password"/>
-        <input name="current_password" type="text" placeholder="Current password"/>
+        <input name="new_password" type="password" placeholder="New password"/>
+        <input name="confirm_password" type="password" placeholder="Confirm your password"/>
+        <input name="current_password" type="password" placeholder="Current password"/>
     <button id="save_button" type="submit">Save changes</button>
     </form:form>
 
