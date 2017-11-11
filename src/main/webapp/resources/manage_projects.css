@@ -27,12 +27,13 @@ textarea {
 .my_projects {
     position: absolute;
     margin-top: 70px;
-    margin-left: 450px;
+    margin-left: 600px;
     width: 1000px;
     height: auto;
     display: inline-block;
 
 }
+
 
 #project_name, #project_description {
     width: 300px;

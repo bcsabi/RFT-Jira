@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -110,6 +111,8 @@ public class UserController {
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        model.addAttribute("projects",currentProjects);
         return "manage_projects";
     }
 

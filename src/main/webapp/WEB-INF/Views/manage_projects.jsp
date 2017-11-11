@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -44,6 +45,9 @@
 
 <div class="my_projects">
     <h2 id="my_projects">My projects</h2>
+    <c:forEach items="${projects}" var="project">
+        <br>${project.projectName} &#9; ${project.projectDescription}</br>
+    </c:forEach>
 </div>
 
 <div class="container">
