@@ -1,8 +1,10 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.controller;
 
 import hu.unideb.rft.jira.jira_springboot_mvc.email.RegistrationEmailThread;
+import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
+import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.SecurityService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private ProjectService projectService;
 
     @Autowired
     private SecurityService securityService;

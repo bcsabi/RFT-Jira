@@ -13,6 +13,7 @@ public class Task {
     private int skalazas;
     private String username;
     private User user;
+    private Project project;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,4 +62,10 @@ public class Task {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    public Project getProject() {return project; }
+
+    public void setProject(Project project) { this.project = project; }
 }
