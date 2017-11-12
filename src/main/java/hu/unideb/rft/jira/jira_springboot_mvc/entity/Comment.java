@@ -4,16 +4,17 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "comment")
 public class Comment implements Comparable<Comment>{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String comment;
     private Date date;
     private Task task;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
