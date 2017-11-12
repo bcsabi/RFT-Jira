@@ -39,7 +39,11 @@
                         autofocus="true"></form:input>
             <form:errors id="error" path="projectDescription"></form:errors>
         </spring:bind>
-        <button id="create_project_button" type="submit">CREATE PROJECT</button>
+        <button id="create_project_button" type="submit" name="create">CREATE PROJECT</button>
+
+        <input name="projectNamee" type="text" path="projectName"  placeholder="Project Name"
+               autofocus="true"/>
+        <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
     </form:form>
 </div>
 

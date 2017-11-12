@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -118,7 +120,7 @@ public class UserController {
         return "manage_projects";
     }
 
-    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST)
+    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST,params = "create")
     public String createProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user) {
         User currentUser = userService.findByUsername(user.getName());
         projectForm.setUsername(currentUser.getUsername());
@@ -130,6 +132,30 @@ public class UserController {
         }
 
         projectService.save(projectForm);
+
+        return "redirect:/manage_projects";
+    }
+
+    @Transactional
+    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST,params = "delete")
+    public String deleteProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user,
+                                @RequestParam(value = "projectNamee") String projectNamee) {
+        User currentUser = userService.findByUsername(user.getName());
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        List<String> projects = new ArrayList<>();
+        for(Project proj : currentProjects)
+            projects.add(proj.getProjectName());
+        int index = 0;
+
+        if (projects.contains(projectNamee))
+        {
+            for (int i = 0; i < projects.size(); i++) {
+                if(projectNamee.equals(projects.get(i))) {
+                    index = i;
+                }
+            }
+            projectService.deleteById(currentProjects.get(index).getId());
+        }
 
         return "redirect:/manage_projects";
     }

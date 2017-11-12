@@ -9,4 +9,5 @@ public interface ProjectService {
 
     Project findByProjectName(String projectName);
     List<Project> findByUsername(String userName);
+    Long deleteById(Long id);
 }

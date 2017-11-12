@@ -26,4 +26,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> findByUsername(String userName) { return Projectrepository.findByUsername(userName); }
+
+    @Override
+    public Long deleteById(Long id) {
+        return Projectrepository.deleteById(id);
+    }
 }
