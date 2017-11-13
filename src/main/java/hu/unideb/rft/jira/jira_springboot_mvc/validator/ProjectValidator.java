@@ -31,12 +31,12 @@ public class ProjectValidator implements Validator{
     public void validate(Object o, Errors errors) {
         Project project = (Project) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectName", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectName", "NotEmptyProject");
         if (project.getProjectName().length() >= 30 || project.getProjectName().length() <= 5) {
             errors.rejectValue("projectName", "Size.projectForm.projectname");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectDescription", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectDescription", "NotEmptyProject");
         if (project.getProjectDescription().length() > 200)
         {
             errors.rejectValue("projectDescription","Size.projectForm.projectdescription");

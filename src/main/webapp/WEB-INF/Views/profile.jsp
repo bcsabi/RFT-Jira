@@ -26,9 +26,18 @@
     <h3>Change password</h3>
 
     <form:form method="POST" modelAttribute="changePassForm" class="change_pass">
-        <input name="new_password" type="password" placeholder="New password"/>
-        <input name="confirm_password" type="password" placeholder="Confirm your password"/>
-        <input name="current_password" type="password" placeholder="Current password"/>
+        <spring:bind path="new_password">
+        <form:input path="new_password" name="new_password" type="password" placeholder="New password"/>
+            <form:errors id="error" path="new_password"></form:errors>
+        </spring:bind>
+        <spring:bind path="confirm_password">
+            <form:input path="confirm_password" name="confirm_password" type="password" placeholder="Confirm password"/>
+            <form:errors id="error" path="confirm_password"></form:errors>
+        </spring:bind>
+        <spring:bind path="current_password">
+            <form:input path="current_password" name="current_password" type="password" placeholder="Current password"/>
+            <form:errors id="error" path="current_password"></form:errors>
+        </spring:bind>
     <button id="save_button" type="submit">Save changes</button>
     </form:form>
 

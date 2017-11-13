@@ -8,6 +8,7 @@ import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.SecurityService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
+import hu.unideb.rft.jira.jira_springboot_mvc.validator.ChangePassValidator;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.ProjectValidator;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.TaskValidator;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.UserValidator;
@@ -18,11 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import passchange.passChange;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -56,6 +60,9 @@ public class UserController {
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private ChangePassValidator changePassValidator;
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String registration(Model model , Principal user) {
@@ -123,6 +130,10 @@ public class UserController {
     @RequestMapping(value = "/manage_projects", method = RequestMethod.POST,params = "create")
     public String createProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user) {
         User currentUser = userService.findByUsername(user.getName());
+        model.addAttribute("firstName",currentUser.getFirstName());
+        model.addAttribute("lastName",currentUser.getLastName());
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        model.addAttribute("projects",currentProjects);
         projectForm.setUsername(currentUser.getUsername());
         projectForm.setUser(currentUser);
         projectValidator.validate(projectForm, bindingResult);
@@ -184,26 +195,30 @@ public class UserController {
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         model.addAttribute("email", currentUser.getEmail());
+        model.addAttribute("changePassForm",new passChange());
 
         return "profile";
     }
 
     @RequestMapping(value = {"/profile"}, method = RequestMethod.POST)
-    public String profilepost(Model model, Principal user, @RequestParam String new_password ,
-        @RequestParam String confirm_password, @RequestParam String current_password) {
+    public String profilepost(@ModelAttribute("changePassForm") passChange pass, BindingResult bindingResult, Model model, Principal user) {
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         model.addAttribute("email", currentUser.getEmail());
+        pass.setUser(currentUser);
+        System.out.println(currentUser.getPassword());
+        System.out.println(pass.getCurrent_password());
+        changePassValidator.validate(pass,bindingResult);
 
-        BCryptPasswordEncoder a = new BCryptPasswordEncoder();
-        if ( new_password.equals(confirm_password) && a.matches(current_password,currentUser.getPassword()))
+        if (bindingResult.hasErrors())
         {
-            currentUser.setPassword(new_password);
-            userService.save(currentUser);
+            return "profile";
         }
 
-        return "profile";
+        currentUser.setPassword(pass.getNew_password());
+        userService.save(currentUser);
+        return "redirect:/profile";
     }
 
 }
