@@ -1,17 +1,11 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.validator;
 
-import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
-import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import passchange.passChange;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import hu.unideb.rft.jira.jira_springboot_mvc.passChange;
 
 @Component
 public class ChangePassValidator implements Validator{

@@ -1,4 +1,4 @@
-package passchange;
+package hu.unideb.rft.jira.jira_springboot_mvc;
 
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 
