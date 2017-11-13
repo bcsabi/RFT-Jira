@@ -24,34 +24,41 @@
 <div class="new_project">
     <h2 id="new_project">New project</h2>
     <form:form method="POST" modelAttribute="projectForm" class="create_project_body">
-        <%--
-<textarea id="project_name" type="text" placeholder="Project name"></textarea>
-<textarea id="project_description" type="text" placeholder="Project description"></textarea>
-<button id="create_project_button" type="submit">CREATE PROJECT</button>
---%>
         <spring:bind path="projectName">
             <form:input id="project_name" type="text" path="projectName"  placeholder="Project Name"
                         autofocus="true"></form:input>
             <form:errors id="error" path="projectName"></form:errors>
         </spring:bind>
         <spring:bind path="projectDescription">
-            <form:input type="text" id="project_description" path="projectDescription"  placeholder="Project Description"
-                        autofocus="true"></form:input>
+            <form:textarea id="project_description" type="text" path="projectDescription"  placeholder="Project Description"
+                        autofocus="true"></form:textarea>
             <form:errors id="error" path="projectDescription"></form:errors>
         </spring:bind>
         <button id="create_project_button" type="submit" name="create">CREATE PROJECT</button>
 
-        <input name="projectNamee" type="text" path="projectName"  placeholder="Project Name"
-               autofocus="true"/>
-        <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
+
     </form:form>
 </div>
 
 <div class="my_projects">
     <h2 id="my_projects">My projects</h2>
     <c:forEach items="${projects}" var="project">
-        <br>${project.projectName} &#9; ${project.projectDescription}</br>
+        <div id="projects"><p id="project">${project.projectName} ${project.projectDescription}</p></div>
     </c:forEach>
+</div>
+
+<div class="modify_project">
+    <h2 id="modify_project">Modify project</h2>
+    <input id="current_project_name" type="text"  placeholder="Project Name"
+                autofocus="true">
+    <textarea id="current_project_description" type="text"  placeholder="Project Description"
+                   autofocus="true"></textarea>
+
+    <form:form method="POST" modelAttribute="projectForm" class="create_project_body">
+    <input id="delete_project_name" name="projectNamee" type="text" path="projectName"  placeholder="Project Name"
+           autofocus="true"/>
+    <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
+    </form:form>
 </div>
 
 <div class="container">
