@@ -19,7 +19,7 @@
 <div class="container">
     <form method="POST" action="login"  >
         <div class="login_body">
-            <p id="welcome">Welcome to our SDT project!</p>
+            <p id="welcome">Welcome to our project for System Development Technologies!</p>
             <p id="loginto">Log in to start.</p>
             <div class="form-group ${error != null ? 'has-error' : ''}">
                 <input name="username" type="text" class="form-control" placeholder="Username"

@@ -23,7 +23,7 @@
 <div class="my_projects">
     <h2 id="my_projects">My projects</h2>
     <c:forEach items="${projects}" var="project">
-        <div id="projects"><p id="project">${project.projectName} ${project.projectDescription}</p></div>
+        <div id="projects"><p id="project">${project.projectName}</p></div>
     </c:forEach>
 </div>
 

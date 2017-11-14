@@ -5,9 +5,10 @@
     right: 0;
     bottom: 0;
     left: 0;
-    width: 650px;
-    height: 350px;
-    border:1px solid darkgray;
+    width: 700px;
+    border-radius: 5px;
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
 }
 
 .signup:hover {
@@ -18,30 +19,47 @@ input {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border: none;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
+    background: rgba(3,3,3,0.5);
+    color: white;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     padding: 7px;
     outline: none;
     margin-left: 35%;
     display: flex;
 }
 
+input:focus{
+    outline: none;
+    box-shadow: 3px 3px 10px #333;
+    background: rgba(3,3,3,.3);
+}
+
+::-webkit-input-placeholder {
+    color: #ddd;
+}
+
 #welcome {
     font-family: "Arial";
     margin-top: 2%;
-    margin-left: 20%;
     font-size: 30px;
+    text-align: center;
 }
 
 #loginto, #notmember{
     font-family: "Arial";
     font-size: 16px;
     margin-left: 35%;
+}
+
+#welcome, #notmember, #loginto {
+    color: white;
 }
 
 #notmember {
@@ -72,13 +90,13 @@ input {
 
 #error {
     font-family: "Arial";
-    color: red;
+    color: #ff0018;
     font-size: 12px;
 }
 
 #logged_out {
     font-family: "Arial";
-    color: blue;
+    color: #3cb0fd;
     font-size: 12px;
     margin-left: 35%;
 }
