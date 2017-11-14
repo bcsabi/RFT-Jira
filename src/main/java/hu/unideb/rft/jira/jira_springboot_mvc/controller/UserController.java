@@ -204,8 +204,6 @@ public class UserController {
         model.addAttribute("lastName",currentUser.getLastName());
         model.addAttribute("email", currentUser.getEmail());
         pass.setUser(currentUser);
-        System.out.println(currentUser.getPassword());
-        System.out.println(pass.getCurrent_password());
         changePassValidator.validate(pass,bindingResult);
 
         if (bindingResult.hasErrors())

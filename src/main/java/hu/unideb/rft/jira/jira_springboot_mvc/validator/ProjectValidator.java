@@ -32,7 +32,7 @@ public class ProjectValidator implements Validator{
         Project project = (Project) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectName", "NotEmptyProject");
-        if (project.getProjectName().length() >= 30 || project.getProjectName().length() <= 5) {
+        if (project.getProjectName().length() >= 30 || project.getProjectName().length() <= 2) {
             errors.rejectValue("projectName", "Size.projectForm.projectname");
         }
 

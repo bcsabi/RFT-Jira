@@ -23,7 +23,7 @@
 <div class="my_projects">
     <h2 id="my_projects">My projects</h2>
     <c:forEach items="${projects}" var="project">
-        <div id="projects"><p id="project">${project.projectName}</p></div>
+        <div id="projects"><h4 id="projectNameText">${project.projectName}</h4><p id="descriptionText">${project.projectDescription}</p></div>
     </c:forEach>
 </div>
 
@@ -53,14 +53,15 @@
                 autofocus="true">
     <textarea id="current_project_description" type="text"  placeholder="Project Description"
                    autofocus="true"></textarea>
+    <h4 id="teamText">Team</h4>
+    <div class="team">
+        <p>${firstName} ${lastName} (owner)</p>
+    </div>
 
-    <%--
-    <form:form method="POST" modelAttribute="projectForm" class="create_project_body">
-    <input id="delete_project_name" name="projectNamee" type="text" path="projectName"  placeholder="Project Name"
-           autofocus="true"/>
+    <input id="username" type="text" placeholder="username" autofocus="true">
+    <button id="delete_member_button" type="submit">DELETE</button>
+    <button id="add_member_button" type="submit">ADD</button>
     <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
-    </form:form>
-    --%>
 </div>
 
 <div class="container">
