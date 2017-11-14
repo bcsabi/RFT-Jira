@@ -1,4 +1,5 @@
-var focusedProjectName;
+var currentProjectName;
+var currentProjectDescription;
 
 $(document).ready(function() {
 
@@ -18,8 +19,18 @@ $(document).ready(function() {
 function  getProject(index){
     $( ".project" ).each(function( i ) {
         if(i == index) {
-            focusedProjectName = $(this).get(0).firstChild.textContent;
+            currentProjectName = $(this).get(0).firstChild.textContent;
+            currentProjectDescription = $(this).get(0).lastChild.textContent;
+            console.log(currentProjectDescription);
         }
+    });
+
+    $("#current_project_name").val(function () {
+        return currentProjectName;
+    });
+
+    $("#current_project_description").val(function () {
+        return currentProjectDescription;
     });
 
 }
