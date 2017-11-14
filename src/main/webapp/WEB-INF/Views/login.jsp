@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../../resources/menu.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/login.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/login.css">
 
     <title>RFT Jira</title>
 </head>

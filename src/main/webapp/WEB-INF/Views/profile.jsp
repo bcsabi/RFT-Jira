@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../../resources/menu.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/profile.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/profile.css">
 
     <title>RFT Jira</title>
 </head>
@@ -38,7 +38,7 @@
             <form:input path="current_password" name="current_password" type="password" placeholder="Current password"/>
             <form:errors id="error" path="current_password"></form:errors>
         </spring:bind>
-    <button id="save_button" type="submit">Save changes</button>
+    <button id="save_button" type="submit">SAVE CHANGES</button>
     </form:form>
 
 </div>

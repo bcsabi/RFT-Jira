@@ -1,15 +1,24 @@
-.profile {
+.login_body {
     position: relative;
     margin: auto;
-    top: 70px;
+    top: 70px ;
     right: 0;
     bottom: 0;
     left: 0;
-    width: 500px;
-    height: auto;
+    width: 700px;
     border-radius: 5px;
     background: rgba(3,3,3,0.25);
     box-shadow: 1px 1px 50px #000;
+}
+
+@media (min-width: 1600px) {
+    .login_body {
+        zoom: 120%;
+    }
+}
+
+.signup:hover {
+    background-color: steelblue;
 }
 
 input {
@@ -28,8 +37,7 @@ input {
     transition: all 0.2s ease-in-out;
     padding: 7px;
     outline: none;
-    margin-left: 32%;
-    margin-top: 3%;
+    margin-left: 35%;
     display: flex;
 }
 
@@ -43,7 +51,30 @@ input:focus{
     color: #ddd;
 }
 
-#save_button {
+#welcome {
+    font-family: "Arial";
+    margin-top: 3%;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#loginto, #notmember{
+    font-family: "Arial";
+    font-size: 16px;
+    margin-left: 35%;
+}
+
+#welcome, #notmember, #loginto {
+    color: white;
+}
+
+#notmember {
+    margin-top: 7%;
+    padding-bottom: 20px;
+}
+
+#login_button {
     background: #4CAF50;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -54,46 +85,26 @@ input:focus{
     padding: 10px 20px 10px 20px;
     width: 180px ;
     text-decoration: none;
-    margin-left: 32%;
+    margin-left: 35%;
     margin-top: 3%;
     border: none;
-    margin-bottom: 20px;
 }
 
-#save_button:hover {
+#login_button:hover {
     background: #3cb0fd;
     text-decoration: none;
     cursor: pointer;
 }
 
 #error {
-    display: inline-block;
-    color: red;
     font-family: "Arial";
-    font-size: 10px;
-    margin-left: 32%;
+    color: #ff0018;
+    font-size: 12px;
 }
 
-h2, h3, p {
+#logged_out {
     font-family: "Arial";
-    display: block;
-}
-
-#username {
-    margin-left: 165px;
-    margin-bottom: 0px;
-}
-
-#email {
-    margin-left: 160px;
-    margin-top: 0px;
-}
-
-#username, #email, h3{
-    color: white;
-}
-
-h3 {
-    margin-left: 165px;
-    margin-top: 30px;
+    color: #3cb0fd;
+    font-size: 12px;
+    margin-left: 35%;
 }

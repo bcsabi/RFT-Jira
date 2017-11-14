@@ -5,8 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../../resources/menu.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/manage_projects.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/manage_projects.css">
+    <link rel="shortcut icon" href="">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../resources/js/manage_projects.js"></script>
 
     <title>RFT Jira</title>
 </head>
@@ -22,8 +26,8 @@
 
 <div class="my_projects">
     <h2 id="my_projects">My projects</h2>
-    <c:forEach items="${projects}" var="project">
-        <div id="projects"><h4 id="projectNameText">${project.projectName}</h4><p id="descriptionText">${project.projectDescription}</p></div>
+    <c:forEach items="${projects}" var="project" varStatus="loop">
+        <div class="project" onclick="getProject(${loop.index})" id="${loop.index}"><h4 id="projectNameText">${project.projectName}</h4><p id="descriptionText">${project.projectDescription}</p></div>
     </c:forEach>
 </div>
 
@@ -53,14 +57,15 @@
                 autofocus="true">
     <textarea id="current_project_description" type="text"  placeholder="Project Description"
                    autofocus="true"></textarea>
-    <h4 id="teamText">Team</h4>
     <div class="team">
-        <p>${firstName} ${lastName} (owner)</p>
+        <!--<p>${firstName} ${lastName} (owner)</p>-->
     </div>
 
+    <button id="delete_member_button" type="submit">DELETE MEMBER</button>
+    <button id="add_member_button" type="submit">ADD MEMBER</button>
     <input id="username" type="text" placeholder="username" autofocus="true">
-    <button id="delete_member_button" type="submit">DELETE</button>
-    <button id="add_member_button" type="submit">ADD</button>
+    <button id="plus" type="submit"></button>
+    <button id="save_modify_button" type="submit">SAVE CHANGES</button>
     <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
 </div>
 

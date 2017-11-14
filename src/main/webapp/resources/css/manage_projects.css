@@ -10,6 +10,7 @@
 }
 
 textarea {
+    font-family: "Arial";
     padding: 7px;
     outline: none;
     margin-left: 5%;
@@ -33,7 +34,7 @@ textarea {
 .my_projects {
     position: absolute;
     margin-top: 70px;
-    margin-left: 395px;
+    margin-left: 390px;
     width: 730px;
     height: auto;
     display: inline-block;
@@ -46,13 +47,19 @@ textarea {
 .modify_project {
     position: absolute;
     margin-top: 70px;
-    margin-left: 1150px;
+    margin-left: 1140px;
     width: 350px;
     display: inline-block;
     border-radius: 5px;
     border: 1px solid rgba(3,3,3,0.25);
     background: rgba(3,3,3,0.25);
     box-shadow: 1px 1px 50px #000;
+}
+
+@media (min-width: 1600px) {
+    .new_project, .my_projects, .modify_project {
+        zoom: 105%;
+    }
 }
 
 input, textarea, .team{
@@ -118,7 +125,7 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     margin-left:5%;
 }
 
-#create_project_button, #delete_project_button, #delete_member_button, #add_member_button{
+#create_project_button, #delete_project_button, #delete_member_button, #add_member_button, #plus, #save_modify_button{
     background: #4CAF50;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -130,23 +137,46 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     width: 315px ;
     text-decoration: none;
     margin-left: 5%;
-    margin-top: 3%;
-    margin-bottom: 5%;
+    margin-top: 10px;
+    margin-bottom: 5px;
     border: none;
 }
 
-#create_project_button:hover, #delete_project_button:hover, #delete_member_button:hover, #add_member_button:hover {
+#add_member_button {
+    background-image: url("../img/sort_down.png");
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: 110px 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#add_member_button:hover {
     background: #3cb0fd;
     text-decoration: none;
+    background-image: url("../img/sort_down.png");
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: 110px 5px;
     cursor: pointer;
 }
 
-#delete_project_name {
-    display: block;
-    margin-left:5%;
-    margin-top: 3%;
-    width: 310px;
-    height: 25px;
+#plus{
+    background-image: url("../img/add.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(3,3,3,0.5);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#create_project_button:hover, #delete_project_button:hover, #delete_member_button:hover, #save_modify_button:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 #new_project, #my_projects, #modify_project {
@@ -155,7 +185,7 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     color: white;
 }
 
-#projects {
+.project {
     background-color: #4CAF50;
     border: 1px solid #4CAF50;
     color: white;
@@ -169,7 +199,7 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     overflow: hidden;
 }
 
-#projects:hover {
+.project:hover {
     cursor: pointer;
     background-color: #3cb0fd;
     border: 1px solid #3cb0fd;
@@ -197,15 +227,6 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     display: block;
 }
 
-#teamText {
-    font-family: "Arial";
-    color: white;
-    text-align: center;
-    margin-top: 3%;
-    margin-bottom: 1%;
-    font-size: 20px;
-}
-
 .team {
     margin-top: 3%;
     margin-bottom: 3%;
@@ -223,12 +244,22 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
 }
 
 #username {
-    width: 315px;
+    width: 250px;
     margin-left: 5%;
+    display: inline-block;
+}
+
+#username, #plus {
+    display: none;
 }
 
 #delete_member_button, #add_member_button {
     width: 146px;
     display: inline-block;
+    margin-bottom: 2px;
+}
+
+#add_member_button {
+    padding-left: 10px;
 }
 
