@@ -6,28 +6,41 @@
     bottom: 0;
     left: 0;
     width: 500px;
-    background-color: white;
-    border:1px solid darkgray;
-    border-radius: 1px;
     height: auto;
+    border-radius: 5px;
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
 }
 
 input {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border: none;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
+    background: rgba(3,3,3,0.5);
+    color: white;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     padding: 7px;
     outline: none;
     margin-left: 32%;
     margin-top: 3%;
     display: flex;
+}
+
+input:focus{
+    outline: none;
+    box-shadow: 3px 3px 10px #333;
+    background: rgba(3,3,3,.3);
+}
+
+::-webkit-input-placeholder {
+    color: #ddd;
 }
 
 #save_button {
@@ -74,6 +87,10 @@ h2, h3, p {
 #email {
     margin-left: 160px;
     margin-top: 0px;
+}
+
+#username, #email, h3{
+    color: white;
 }
 
 h3 {
