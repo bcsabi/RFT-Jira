@@ -52,9 +52,10 @@
 </div>
 
 <div class="modify_project">
+    <form:form method="POST" modelAttribute="projectForm">
     <h2 id="modify_project">Modify project</h2>
     <input id="current_project_name" type="text"  placeholder="Project Name"
-                autofocus="true">
+                autofocus="true" name="projectNamee"  path="projectName" >
     <textarea id="current_project_description" type="text"  placeholder="Project Description"
                    autofocus="true"></textarea>
     <div class="team">
@@ -67,6 +68,7 @@
     <button id="plus" type="submit"></button>
     <button id="save_modify_button" type="submit">SAVE CHANGES</button>
     <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
+    </form:form>
 </div>
 
 <div class="container">
