@@ -4,6 +4,7 @@ import hu.unideb.rft.jira.jira_springboot_mvc.email.RegistrationEmailThread;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
+import hu.unideb.rft.jira.jira_springboot_mvc.repository.ProjectRepository;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.SecurityService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
@@ -14,6 +15,7 @@ import hu.unideb.rft.jira.jira_springboot_mvc.validator.TaskValidator;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -163,6 +165,33 @@ public class UserController {
                 }
             }
             projectService.deleteById(currentProjects.get(index).getId());
+        }
+
+        return "redirect:/manage_projects";
+    }
+
+    @Modifying
+    @Transactional
+    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST,params = "modify")
+    public String modifyProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user,
+                                @RequestParam(value = "projectNamee") String projectNamee) {
+        User currentUser = userService.findByUsername(user.getName());
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        List<String> projects = new ArrayList<>();
+        for(Project proj : currentProjects)
+            projects.add(proj.getProjectName());
+        int index = 0;
+
+        if (projects.contains(projectNamee))
+        {
+            for (int i = 0; i < projects.size(); i++) {
+                if(projectNamee.equals(projects.get(i))) {
+                    index = i;
+                }
+            }
+            /*projectService.findByProjectName((currentProjects.get(index).getProjectName())).setProjectName(projectNamee);
+            projectService.save((currentProjects.get(index)));*/
+
         }
 
         return "redirect:/manage_projects";

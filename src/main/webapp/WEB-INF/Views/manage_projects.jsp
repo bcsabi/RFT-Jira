@@ -63,10 +63,10 @@
     </div>
 
     <button id="delete_member_button" type="submit">DELETE MEMBER</button>
-    <button id="add_member_button" type="submit">ADD MEMBER</button>
+    <button id="add_member_button" type="button">ADD MEMBER</button>
     <input id="username" type="text" placeholder="username" autofocus="true">
     <button id="plus" type="submit"></button>
-    <button id="save_modify_button" type="submit">SAVE CHANGES</button>
+    <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
     <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
     </form:form>
 </div>
