@@ -45,9 +45,7 @@ public class Project {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -57,21 +55,11 @@ public class Project {
 
     @OneToMany
     @JoinColumn(name = "project_id")
-    public Set<Task> getTasks() {
-        return tasks;
-    }
+    public Set<Task> getTasks() { return tasks; }
 
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
+    public void setTasks(Set<Task> tasks) { this.tasks = tasks; }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    void update(String projectName, String projectDescription) {
-
-        this.projectName = projectName;
-        this.projectDescription = projectDescription;
     }
 }

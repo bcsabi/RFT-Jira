@@ -53,21 +53,22 @@
 
 <div class="modify_project">
     <form:form method="POST" modelAttribute="projectForm">
-    <h2 id="modify_project">Modify project</h2>
-    <input id="current_project_name" type="text"  placeholder="Project Name"
-                autofocus="true" name="projectNamee"  path="projectName" >
-    <textarea id="current_project_description" type="text"  placeholder="Project Description"
-                   autofocus="true"></textarea>
-    <div class="team">
-        <!--<p>${firstName} ${lastName} (owner)</p>-->
-    </div>
+        <h2 id="modify_project">Modify project</h2>
+        <input id="current_project_name" type="text"  placeholder="Project Name"
+               autofocus="true" name="projectNamee" path="projectName" >
+        <textarea id="current_project_description" name="projectDescription" path="projectDescription"  type="text"  placeholder="Project Description"
+                  autofocus="true"></textarea>
+        <input type="text" id="current_project_index" name="projectIndex" style="display: none">
+        <div class="team">
+            <!--<p>${firstName} ${lastName} (owner)</p>-->
+        </div>
 
-    <button id="delete_member_button" type="submit">DELETE MEMBER</button>
-    <button id="add_member_button" type="button">ADD MEMBER</button>
-    <input id="username" type="text" placeholder="username" autofocus="true">
-    <button id="plus" type="submit"></button>
-    <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
-    <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
+        <button id="delete_member_button" type="submit">DELETE MEMBER</button>
+        <button id="add_member_button" type="button">ADD MEMBER</button>
+        <input id="username" type="text" placeholder="username" autofocus="true">
+        <button id="plus" type="submit"></button>
+        <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
+        <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
     </form:form>
 </div>
 

@@ -1,5 +1,7 @@
 var currentProjectName;
 var currentProjectDescription;
+var currentProjectIndex;
+var previousProjectIndex;
 
 $(document).ready(function() {
 
@@ -17,13 +19,20 @@ $(document).ready(function() {
 });
 
 function  getProject(index){
+    currentProjectIndex = index;
     $( ".project" ).each(function( i ) {
-        if(i == index) {
+        if(i == currentProjectIndex) {
             currentProjectName = $(this).get(0).firstChild.textContent;
             currentProjectDescription = $(this).get(0).lastChild.textContent;
-            console.log(currentProjectDescription);
+            $(this).css("background-color", "#3cb0fd");
+            $(this).css("border", "1px solid #3cb0fd");
+        }
+        if(i == previousProjectIndex) {
+            $(this).css("background-color", "#4CAF50");
+            $(this).css("border", "1px solid #4CAF50");
         }
     });
+    previousProjectIndex = currentProjectIndex;
 
     $("#current_project_name").val(function () {
         return currentProjectName;
@@ -31,6 +40,10 @@ function  getProject(index){
 
     $("#current_project_description").val(function () {
         return currentProjectDescription;
+    });
+
+    $("#current_project_index").val(function () {
+        return currentProjectIndex;
     });
 
 }
