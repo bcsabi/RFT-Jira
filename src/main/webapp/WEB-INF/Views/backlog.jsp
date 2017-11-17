@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/backlog.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../resources/js/backlog.js"></script>
+
     <title>RFT Jira</title>
 </head>
 <body>
@@ -26,11 +29,29 @@
     </div>
 </div>
 
+<button class="new_task_button" type="button">NEW TASK</button>
 <div class="new_task">
-    <button class="new_task_button" type="button">NEW TASK</button>
-    <input id="taskname" type="text" placeholder="Task name">
-    <textarea id="taskdescription" placeholder="Task description"></textarea>
-    <input id="tasktype">
+    <input id="task_name" type="text" placeholder="Task name">
+    <textarea id="task_description" placeholder="Task description"></textarea>
+    <select id="task_type">
+        <option value="bug">Bug</option>
+        <option value="improvement">Improvement</option>
+        <option value="new_feature">New Feature</option>
+        <option value="content">Content</option>
+    </select>
+    <select id="task_priority">
+        <option value="highest">Highest</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+        <option value="lowest">Lowest</option>
+    </select>
+    <input id="votes" type="text" placeholder="Votes">
+    <button class="create_task_button" type="button">CREATE TASK</button>
+</div>
+
+<div class="tasks">
+    <h2>Tasks</h2>
 
 </div>
 
