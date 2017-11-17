@@ -146,7 +146,7 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     background-image: url("../img/sort_down.png");
     background-size: 15%;
     background-repeat: no-repeat;
-    background-position: 110px 5px;
+    background-position: 115px 5px;
     cursor: pointer;
     display: inline-block;
 }
@@ -157,7 +157,7 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     background-image: url("../img/sort_down.png");
     background-size: 15%;
     background-repeat: no-repeat;
-    background-position: 110px 5px;
+    background-position: 115px 5px;
     cursor: pointer;
 }
 

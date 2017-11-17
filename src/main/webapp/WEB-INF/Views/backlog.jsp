@@ -17,7 +17,20 @@
     <li class="taskboard"><a class="taskboard" href="taskboard">TASK BOARD</a></li>
 </ul>
 
-<div class="tasks">
+<div class="project_loader">
+    <button class="projects_button">PROJECTS </button>
+    <div class="projects_content">
+        <a>Project 1</a>
+        <a>Project 2</a>
+        <a>Project 3</a>
+    </div>
+</div>
+
+<div class="new_task">
+    <button class="new_task_button" type="button">NEW TASK</button>
+    <input id="taskname" type="text" placeholder="Task name">
+    <textarea id="taskdescription" placeholder="Task description"></textarea>
+    <input id="tasktype">
 
 </div>
 

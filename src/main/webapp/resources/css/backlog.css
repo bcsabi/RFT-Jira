@@ -23,3 +23,82 @@ th, td {
 tr:hover {
     background-color:#f5f5f5
 }
+
+.projects_button, .new_task_button{
+    background: #4CAF50;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "Arial";
+    color: white;
+    font-size: 12px;
+    padding: 10px 20px 10px 20px;
+    width: 130px ;
+    text-decoration: none;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.projects_button, .projects_button:hover {
+    background-image: url("../img/sort_down.png");
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: 105px 7px;
+}
+
+.projects_button:hover, .new_task_button:hover, .projects_button:checked {
+    background-color: #3cb0fd;
+}
+
+.new_task_button, .new_task_button:hover {
+    background-image: url("../img/sort_down.png");
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: 105px 7px;
+}
+
+.new_task {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.project_loader{
+    position: relative;
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 600px;
+}
+
+@media (max-width: 665px) {
+    .project_loader, .new_task_button {
+        margin-top: 90px;
+    }
+}
+
+.projects_content {
+    display: none;
+    position: absolute;
+    height: auto;
+    width: 195px;
+    background-color: rgba(3,3,3,0.5);
+}
+
+.projects_content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.projects_content a:hover {
+    background-color: rgba(3,3,3,0.3);
+    cursor: pointer;
+}
+
+.project_loader:hover .projects_content {
+    display: block;
+}

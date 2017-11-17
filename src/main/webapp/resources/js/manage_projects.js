@@ -27,7 +27,7 @@ function  getProject(index){
             $(this).css("background-color", "#3cb0fd");
             $(this).css("border", "1px solid #3cb0fd");
         }
-        if(i == previousProjectIndex) {
+        if(i == previousProjectIndex && currentProjectIndex != previousProjectIndex) {
             $(this).css("background-color", "#4CAF50");
             $(this).css("border", "1px solid #4CAF50");
         }
