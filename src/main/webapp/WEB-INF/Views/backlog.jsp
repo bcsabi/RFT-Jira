@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,28 +34,48 @@
 
 <button class="new_task_button" type="button">NEW TASK</button>
 <div class="new_task">
-    <input id="task_name" type="text" placeholder="Task name">
-    <textarea id="task_description" placeholder="Task description"></textarea>
-    <select id="task_type">
-        <option value="bug">Bug</option>
-        <option value="improvement">Improvement</option>
-        <option value="new_feature">New Feature</option>
-        <option value="content">Content</option>
-    </select>
-    <select id="task_priority">
-        <option value="highest">Highest</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-        <option value="lowest">Lowest</option>
-    </select>
-    <input id="votes" type="text" placeholder="Votes">
-    <button class="create_task_button" type="button">CREATE TASK</button>
+    <form:form method="POST" modelAttribute="taskForm" class="create_task_body">
+        <spring:bind path="taskName">
+            <form:input id="task_name" type="text" path="taskName" placeholder="Task name" autofocus="true"></form:input>
+            <form:errors id="error" path="taskName"></form:errors>
+        </spring:bind>
+        <spring:bind path="description" >
+            <form:textarea id="task_description" type="text" path="description" placeholder="Task description" autofocus="true"></form:textarea>
+            <form:errors id="error" path="taskName"></form:errors>
+        </spring:bind>
+        <spring:bind path="type">
+            <form:select id="task_type" path="type">
+                <form:option value="bug">Bug</form:option>
+                <form:option value="improvement">Improvement</form:option>
+                <form:option value="new_feature">New Feature</form:option>
+                <form:option value="content">Content</form:option>
+            </form:select>
+        </spring:bind>
+        <spring:bind path="priority">
+            <form:select id="task_priority" path="priority">
+                <form:option value="highest">Highest</form:option>
+                <form:option value="high">High</form:option>
+                <form:option value="medium">Medium</form:option>
+                <form:option value="low">Low</form:option>
+                <form:option value="lowest">Lowest</form:option>
+            </form:select>
+        </spring:bind>
+        <spring:bind path="taskName" >
+            <form:input id="votes" type="text" path="votesPoint" placeholder="Votes" autofocus="true"></form:input>
+            <form:errors id="error" path="votesPoint"></form:errors>
+        </spring:bind>
+        <button class="create_task_button" type="submit">CREATE TASK</button>
+    </form:form>
 </div>
 
 <div class="tasks">
     <h2>Tasks</h2>
-
+    <td>
+        <c:forEach items="${tasks}" var="task">
+            <br/>
+            <c:out value="${task}"></c:out>
+        </c:forEach>
+    </td>
 </div>
 
 <div class="container">

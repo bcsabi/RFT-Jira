@@ -23,10 +23,17 @@ public class TaskValidator implements Validator{
     public void validate(Object o, Errors errors) {
         Task task = (Task) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "taskname", "NotEmpty");
-        if (task.getTaskname().length() >= 100 || task.getTaskname().length() <= 5) {
-            errors.rejectValue("taskname", "Size.taskForm.taskname");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "taskName", "NotEmpty");
+        if (task.getTaskName().length() >= 100 || task.getTaskName().length() <= 5) {
+            errors.rejectValue("taskName", "Size.taskForm.taskname");
         }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "NotEmpty");
+        if (task.getTaskName().length() >= 1000) {
+            errors.rejectValue("description", "Size.taskForm.description");
+        }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "votesPoint", "NotEmpty");
 
     }
 }

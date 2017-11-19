@@ -9,11 +9,13 @@ import java.util.Set;
 public class Task {
     private Long id;
     @Column(length = 100)
-    private String taskname;
-    private String besorolas;
-    private int skalazas;
-    private String username;
-    private User user;
+    private String taskName;
+    private String description;
+    private String type;
+    private String priority;
+    private Integer votesPoint;
+    private String creator;
+    private String assignedTo;
     private Project project;
     private Set<Comment> comments;
 
@@ -27,42 +29,60 @@ public class Task {
         this.id = id;
     }
 
-    public String getTaskname() {
-        return taskname;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setTaskname(String taskname) {
-        this.taskname = taskname;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
-    public String getBesorolas() { return besorolas; }
-
-    public void setBesorolas(String besorolas) {
-        this.besorolas = besorolas;
+    public String getDescription() {
+        return description;
     }
 
-    public int getSkalazas() {
-        return skalazas;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setSkalazas(int skalazas) {
-        this.skalazas = skalazas;
+    public String getType() {
+        return type;
     }
 
-    public String getUsername() {
-        return username;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setUsername(String username) { this.username = username; }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    public User getUser() {
-        return user;
+    public String getPriority() {
+        return priority;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public Integer getVotesPoint() {
+        return votesPoint;
+    }
+
+    public void setVotesPoint(Integer votesPoint) {
+        this.votesPoint = votesPoint;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(String assignedTo) {
+        this.assignedTo = assignedTo;
     }
 
     @ManyToOne
