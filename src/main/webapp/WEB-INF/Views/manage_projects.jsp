@@ -65,8 +65,8 @@
 
         <button id="delete_member_button" type="submit">DELETE MEMBER</button>
         <button id="add_member_button" type="button">ADD MEMBER</button>
-        <input id="username" type="text" placeholder="username" autofocus="true">
-        <button id="plus" type="submit"></button>
+        <input id="username" type="text" placeholder="username" autofocus="true" name="userToAdd">
+        <button id="plus" type="submit" name="add"></button>
         <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
         <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
     </form:form>

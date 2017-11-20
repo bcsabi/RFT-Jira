@@ -12,7 +12,7 @@ public class Project {
     private String projectName;
     private String projectDescription;
     private String username;
-    private User user;
+    private Set<User> user;
     private Set<Task> tasks;
 
     @Id
@@ -47,9 +47,9 @@ public class Project {
 
     public void setUsername(String username) { this.username = username; }
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "user_id")
-    public User getUser() {
+    public Set<User> getUser() {
         return user;
     }
 
@@ -59,7 +59,7 @@ public class Project {
 
     public void setTasks(Set<Task> tasks) { this.tasks = tasks; }
 
-    public void setUser(User user) {
+    public void setUser(Set<User> user) {
         this.user = user;
     }
 }

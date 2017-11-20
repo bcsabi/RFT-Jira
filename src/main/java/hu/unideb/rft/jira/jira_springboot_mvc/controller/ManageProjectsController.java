@@ -21,7 +21,9 @@ import org.springframework.stereotype.Controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ManageProjectsController {
@@ -58,7 +60,9 @@ public class ManageProjectsController {
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
         projectForm.setUsername(currentUser.getUsername());
-        projectForm.setUser(currentUser);
+        Set<User> users = new HashSet<>();
+        users.add(currentUser);
+        projectForm.setUser(users);
         projectValidator.validate(projectForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -121,6 +125,29 @@ public class ManageProjectsController {
         project.setProjectDescription(projectDescription);
         logger.info("New project description: " + project.getProjectDescription());
         projectService.save(project);
+
+        return "redirect:/manage_projects";
+    }
+
+    @Modifying
+    @Transactional
+    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST, params = "add")
+    public String addUserToProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user,
+                                   @RequestParam(value = "projectNamee")String projectNamee,
+                                   @RequestParam(value = "projectDescription") String projectDescription,
+                                   @RequestParam(value = "projectIndex") String projectIndex,
+                                   @RequestParam(value = "userToAdd") String userToAdd) {
+        User currentUser = userService.findByUsername(user.getName());
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+
+        int index = Integer.parseInt(projectIndex);
+        Project project = currentProjects.get(index);
+        Set<User> users = project.getUser();
+        if (!users.contains(userService.findByUsername(userToAdd)) && userService.findByUsername(userToAdd) != null)
+            users.add(userService.findByUsername(userToAdd));
+        project.setUser(users);
+        projectService.save(project);
+
 
         return "redirect:/manage_projects";
     }
