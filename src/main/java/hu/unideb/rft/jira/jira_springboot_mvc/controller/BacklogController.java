@@ -67,6 +67,7 @@ public class BacklogController {
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
         taskForm.setProject(projectService.findByProjectName(project_name));
+        taskForm.setStatus("ToDo");
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);

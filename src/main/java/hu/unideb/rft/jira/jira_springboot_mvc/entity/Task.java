@@ -15,6 +15,7 @@ public class Task {
     private String priority;
     private Integer votesPoint;
     private String creator;
+    private String status;
     private String assignedTo;
     private String project_name;
     private Project project;
@@ -76,6 +77,14 @@ public class Task {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getAssignedTo() {
