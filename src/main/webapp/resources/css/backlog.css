@@ -80,7 +80,7 @@
     cursor: pointer;
 }
 
-.new_task, #task_name, #task_description, #task_type, #task_priority, #votes, .tasks{
+.new_task, #task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.tasks{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -118,7 +118,7 @@ select option {
     display: none;
 }
 
-#task_name, #task_description, #task_type, #task_priority, #votes, .create_task_button {
+#task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.create_task_button {
     width: 400px;
     margin: 2% auto 3%;
 }

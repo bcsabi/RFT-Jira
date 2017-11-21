@@ -16,6 +16,7 @@ public class Task {
     private Integer votesPoint;
     private String creator;
     private String assignedTo;
+    private String project_name;
     private Project project;
     private Set<Comment> comments;
 
@@ -99,5 +100,13 @@ public class Task {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -59,20 +60,22 @@ public class BacklogController {
     }
 
     @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.POST)
-    public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user){
+    public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
+                             @RequestParam(name = "project_name") String project_name){
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
+        taskForm.setProject(projectService.findByProjectName(project_name));
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
 
-        taskService.save(taskForm);
-
         if(bindingResult.hasErrors()){
             return "backlog";
         }
+
+        taskService.save(taskForm);
 
         List<Task> tasks = taskRepository.findAll();
         //átmeneti
@@ -81,6 +84,7 @@ public class BacklogController {
             tasknames.add(task.getTaskName());
         }
         model.addAttribute("tasks", tasknames);
+
 
         return "backlog";
     }

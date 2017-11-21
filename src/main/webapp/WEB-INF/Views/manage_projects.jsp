@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
 </ul>
 
 <div class="my_projects">
-    <h2 id="my_projects">My projects</h2>
+    <h2 id="my_projects">My projects (${fn:length(projects)})</h2>
     <c:forEach items="${projects}" var="project" varStatus="loop">
         <div class="project" onclick="getProject(${loop.index})" id="${loop.index}"><h4 id="projectNameText">${project.projectName}</h4><p id="descriptionText">${project.projectDescription}</p></div>
     </c:forEach>
