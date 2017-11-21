@@ -26,9 +26,9 @@
 <div class="project_loader">
     <button class="projects_button">PROJECTS </button>
     <div class="projects_content">
-        <a>Project 1</a>
-        <a>Project 2</a>
-        <a>Project 3</a>
+        <c:forEach items="${projects}" var="project">
+            <a >${project.projectName}</a>
+        </c:forEach>
     </div>
 </div>
 

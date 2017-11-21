@@ -1,9 +1,11 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.controller;
 
+import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 
 import hu.unideb.rft.jira.jira_springboot_mvc.repository.TaskRepository;
+import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.TaskValidator;
@@ -34,12 +36,17 @@ public class BacklogController {
     @Autowired
     private TaskValidator taskValidator;
 
+    @Autowired
+    private ProjectService projectService;
+
     @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.GET)
     public String getTasks(Model model , Principal user) {
         model.addAttribute("taskForm", new Task());
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        model.addAttribute("projects",currentProjects);
         List<Task> tasks = taskRepository.findAll();
         //átmeneti
         List<String> tasknames = new ArrayList<>();
@@ -58,6 +65,8 @@ public class BacklogController {
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
         taskValidator.validate(taskForm, bindingResult);
+        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        model.addAttribute("projects",currentProjects);
 
         taskService.save(taskForm);
 
@@ -73,7 +82,7 @@ public class BacklogController {
         }
         model.addAttribute("tasks", tasknames);
 
-        return "redirect:/backlog";
+        return "backlog";
     }
 
 
