@@ -34,50 +34,27 @@
     background-position: 105px 7px;
 }
 
-.projects_button:hover, .new_task_button:hover, .create_task_button:hover {
-    background-color: #3cb0fd;
-}
-
 .new_task_button, .new_task_button:hover {
     background-image: url("../img/sort_down.png");
     background-size: 15%;
     background-repeat: no-repeat;
     background-position: 105px 7px;
-    display: inline-block;
-    margin-left: 20px;
+    display: block;
+    position: relative;
+    margin: 60px auto 3%;
 }
 
-.project_loader{
-    position: relative;
-    display: inline-block;
-    margin-top: 50px;
-    margin-left: 600px;
+.projects_button:hover, .new_task_button:hover, .create_task_button:hover {
+    background-color: #3cb0fd;
 }
 
 @media (max-width: 665px) {
-    .project_loader, .new_task_button {
-        margin-top: 90px;
+    .new_task_button, .new_task_button:hover {
+        margin: 100px auto 3%;
     }
-}
-
-.projects_content {
-    display: none;
-    position: absolute;
-    height: auto;
-    width: 195px;
-    background-color: rgba(3,3,3,0.5);
-}
-
-.projects_content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.projects_content a:hover {
-    background-color: rgba(3,3,3,0.3);
-    cursor: pointer;
+    .tasks {
+        margin-top: 20px;
+    }
 }
 
 .new_task, #task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.tasks{
@@ -129,9 +106,10 @@ select option {
 
 .tasks{
     height: auto;
-    width: 800px;
-    margin-left: 20px;
+    width: 1000px;
     margin-top: 20px;
+    margin-left: 20px;
+    display: block;
 }
 
 

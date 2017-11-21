@@ -9,6 +9,8 @@ import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
 import hu.unideb.rft.jira.jira_springboot_mvc.validator.TaskValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,19 +42,28 @@ public class BacklogController {
     @Autowired
     private ProjectService projectService;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
     @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.GET)
-    public String getTasks(Model model , Principal user) {
+    public String getTasks(Model model , Principal user,
+                           @RequestParam(value="projectName") String projectName) {
         model.addAttribute("taskForm", new Task());
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
+        model.addAttribute("projectName", projectName);
         List<Task> tasks = taskRepository.findAll();
-        //átmeneti
+
+        logger.info(projectName);
         List<String> tasknames = new ArrayList<>();
         for(Task task : tasks){
-            tasknames.add(task.getTaskName());
+            if(task.getProject_name().equals(projectName)) {
+                tasknames.add(task.getTaskName());
+                logger.info("TASK NAME = " + task.getTaskName() + " PROJECT NAME = " + task.getProject_name());
+            }
         }
         model.addAttribute("tasks", tasknames);
 
@@ -61,33 +72,39 @@ public class BacklogController {
 
     @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.POST)
     public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
-                             @RequestParam(name = "project_name") String project_name){
+                             @RequestParam(name = "projectName") String projectName){
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
-        taskForm.setProject(projectService.findByProjectName(project_name));
+        taskForm.setProject(projectService.findByProjectName(projectName));
+        taskForm.setProject_name(projectName);
         taskForm.setStatus("ToDo");
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
 
+        logger.info("CREATE TASK");
+        logger.info("SAVED TASK NAME = " + taskForm.getTaskName());
+        logger.info("SAVED TASK TO = " + taskForm.getProject_name());
+
         if(bindingResult.hasErrors()){
-            return "backlog";
+            return "redirect:/backlog?projectName=" + projectName;
         }
 
         taskService.save(taskForm);
 
         List<Task> tasks = taskRepository.findAll();
-        //átmeneti
         List<String> tasknames = new ArrayList<>();
         for(Task task : tasks){
-            tasknames.add(task.getTaskName());
+            if(task.getProject_name().equals(projectName)) {
+                tasknames.add(task.getTaskName());
+                logger.info("TASK NAME = " + task.getTaskName());
+            }
         }
         model.addAttribute("tasks", tasknames);
 
-
-        return "backlog";
+        return "redirect:/backlog?projectName=" + projectName;
     }
 
 

@@ -23,15 +23,6 @@
     <li class="taskboard"><a class="taskboard" href="taskboard">TASK BOARD</a></li>
 </ul>
 
-<div class="project_loader">
-    <button class="projects_button">PROJECTS </button>
-    <div class="projects_content">
-        <c:forEach items="${projects}" var="project">
-            <a>${project.projectName}</a>
-        </c:forEach>
-    </div>
-</div>
-
 <button class="new_task_button" type="button">NEW TASK</button>
 <div class="new_task">
     <form:form method="POST" modelAttribute="taskForm" class="create_task_body">
@@ -63,13 +54,6 @@
         <spring:bind path="taskName" >
             <form:input id="votes" type="text" path="votesPoint" placeholder="Votes" autofocus="true"></form:input>
             <form:errors id="error" path="votesPoint"></form:errors>
-        </spring:bind>
-        <spring:bind path="project_name">
-            <form:select id="task_project" path="project_name">
-                <c:forEach items="${projects}" var="projectt">
-                    <form:option value="${projectt.projectName}">${projectt.projectName}</form:option>
-                </c:forEach>
-            </form:select>
         </spring:bind>
         <button class="create_task_button" type="submit">CREATE TASK</button>
     </form:form>

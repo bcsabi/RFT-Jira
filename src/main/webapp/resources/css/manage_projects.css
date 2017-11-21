@@ -211,6 +211,11 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     margin-top: 3%;
 }
 
+#projectNameText:hover {
+    color: yellow;
+    text-decoration: underline;
+}
+
 #descriptionText {
     font-family: "Arial";
     text-align: center;
@@ -261,5 +266,9 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
 
 #add_member_button {
     padding-left: 10px;
+}
+
+a {
+    color: inherit;
 }
 
