@@ -61,12 +61,27 @@
 
 <div class="tasks">
     <h2>Tasks</h2>
-    <td>
+    <table class="task_table">
+        <tr>
+            <th class="column_name" id="id_column">ID</th>
+            <th class="column_name" id="name_column">NAME</th>
+            <th class="column_name" id="description_column">DESCRIPTION</th>
+            <th class="column_name" id="type_column">TYPE</th>
+            <th class="column_name" id="priority_column">PRIORITY</th>
+            <th class="column_name" id="votes_column">VOTES</th>
+        </tr>
         <c:forEach items="${tasks}" var="task">
-            <br/>
-            <c:out value="${task}"></c:out>
+        <tr>
+            <td>${task.id}</td>
+            <td><div id="task_name_data">${task.taskName}</div></td>
+            <td><div id="task_description_data">${task.description}</div></td>
+            <td>${task.type}</td>
+            <td>${task.priority}</td>
+            <td>${task.votesPoint}</td>
+        </tr>
         </c:forEach>
-    </td>
+    </table>
+
 </div>
 
 <div class="container">

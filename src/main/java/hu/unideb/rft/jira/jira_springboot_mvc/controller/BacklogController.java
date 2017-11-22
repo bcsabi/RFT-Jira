@@ -58,14 +58,14 @@ public class BacklogController {
         List<Task> tasks = taskRepository.findAll();
 
         logger.info(projectName);
-        List<String> tasknames = new ArrayList<>();
+        List<Task> tasksByCurrentProject = taskRepository.findAll();
+
         for(Task task : tasks){
-            if(task.getProject_name().equals(projectName)) {
-                tasknames.add(task.getTaskName());
-                logger.info("TASK NAME = " + task.getTaskName() + " PROJECT NAME = " + task.getProject_name());
+            if(!task.getProject_name().equals(projectName)) {
+                tasksByCurrentProject.remove(task);
             }
         }
-        model.addAttribute("tasks", tasknames);
+        model.addAttribute("tasks", tasksByCurrentProject);
 
         return "backlog";
     }
@@ -95,14 +95,14 @@ public class BacklogController {
         taskService.save(taskForm);
 
         List<Task> tasks = taskRepository.findAll();
-        List<String> tasknames = new ArrayList<>();
+        List<Task> tasksByCurrentProject = taskRepository.findAll();
+
         for(Task task : tasks){
-            if(task.getProject_name().equals(projectName)) {
-                tasknames.add(task.getTaskName());
-                logger.info("TASK NAME = " + task.getTaskName());
+            if(!task.getProject_name().equals(projectName)) {
+                tasksByCurrentProject.remove(task);
             }
         }
-        model.addAttribute("tasks", tasknames);
+        model.addAttribute("tasks", tasksByCurrentProject);
 
         return "redirect:/backlog?projectName=" + projectName;
     }

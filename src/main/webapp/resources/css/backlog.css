@@ -112,5 +112,56 @@ select option {
     display: block;
 }
 
+.task_table {
+    border-collapse:collapse;
+    border-spacing:0;
+    border-color:#999;
+}
 
+.task_table td {
+    font-family: Arial, sans-serif;
+    font-size:14px;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:1px;
+    overflow:hidden;
+    word-break:normal;
+    border-color:#3cb0fd;
+    color: white;
+    background: rgba(3,3,3,0.5);
+    border-top-width:1px;
+    border-bottom-width:1px;
+    height: 10px;
+}
 
+.task_table th {
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:1px;
+    overflow:hidden;
+    word-break:normal;
+    border-color:#3cb0fd;
+    color:#fff;
+    background-color:#4CAF50;
+    width: 150px;
+}
+
+.task_table .column_name {
+    vertical-align:top
+}
+
+#id_column, #votes_column {
+    width: 50px;
+}
+
+#description_column {
+    width: 400px;
+}
+
+#task_description_data, #task_name_data {
+    height: 15px;
+    overflow: hidden;
+}
