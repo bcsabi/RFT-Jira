@@ -81,7 +81,27 @@
         </tr>
         </c:forEach>
     </table>
+</div>
 
+<div class="modify_task">
+    <h2 id="modify_task">Modify task</h2>
+    <input id="current_task_name" type="text"  placeholder="Task Name">
+    <textarea id="current_task_description" placeholder="Task Description"></textarea>
+    <select id="current_task_type">
+        <option value="bug">Bug</option>
+        <option value="improvement">Improvement</option>
+        <option value="new_feature">New Feature</option>
+        <option value="content">Content</option>
+    </select>
+    <select id="current_task_priority">
+        <option value="highest">Highest</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+        <option value="lowest">Lowest</option>
+    </select>
+    <input id="current_task_votes" type="text" placeholder="Votes">
+    <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
 </div>
 
 <div class="container">

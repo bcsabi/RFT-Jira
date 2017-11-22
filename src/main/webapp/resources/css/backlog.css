@@ -9,7 +9,54 @@
     cursor: pointer;
 }
 
-.projects_button, .new_task_button, .create_task_button {
+input, textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background: rgba(3,3,3,0.5);
+    color: white;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    padding: 7px;
+    outline: none;
+    margin-left: 35%;
+    display: flex;
+}
+
+.modify_task {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 1140px;
+    width: 350px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid rgba(3,3,3,0.25);
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 3px 3px 10px #333;
+    background: rgba(3,3,3,.3);
+}
+
+::-webkit-input-placeholder {
+    color: #ddd;
+}
+
+textarea::-webkit-input-placeholder, textarea:-moz-placeholder,
+textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
+    color: #ddd;
+}
+
+.projects_button, .new_task_button, .create_task_button, #save_modify_button{
     background: #4CAF50;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -57,7 +104,14 @@
     }
 }
 
-.new_task, #task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.tasks{
+@media (min-width: 1600px) {
+    .tasks, .modify_task {
+        zoom: 105%;
+    }
+}
+
+.new_task, #task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.tasks, #current_task_type,
+#current_task_priority {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -106,10 +160,11 @@ select option {
 
 .tasks{
     height: auto;
-    width: 1000px;
+    width: 1100px;
     margin-top: 20px;
     margin-left: 20px;
-    display: block;
+    position: absolute;
+    display: inline-block;
 }
 
 .task_table {
@@ -143,10 +198,15 @@ select option {
     border-width:1px;
     overflow:hidden;
     word-break:normal;
-    border-color:#3cb0fd;
+    border-color: #3cb0fd;
     color:#fff;
     background-color:#4CAF50;
     width: 150px;
+}
+
+.task_table tr:hover {
+    background-color: #3cb0fd;
+    cursor: pointer;
 }
 
 .task_table .column_name {
@@ -165,3 +225,35 @@ select option {
     height: 15px;
     overflow: hidden;
 }
+
+#current_task_name {
+    width: 315px;
+    height: 25px;
+    margin-top:3%;
+    margin-left:5%;
+}
+
+#current_task_description {
+    height: 200px;
+    width: 315px;
+    margin-top:3%;
+    margin-left:5%;
+    resize: none;
+}
+
+#modify_task {
+    font-family: "Arial";
+    text-align: center;
+    color: white;
+}
+
+#current_task_priority, #current_task_type, #current_task_votes, #current_task_name, #current_task_description,
+#save_modify_button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 315px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+
