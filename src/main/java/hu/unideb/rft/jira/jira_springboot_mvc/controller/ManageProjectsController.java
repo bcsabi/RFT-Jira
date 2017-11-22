@@ -40,7 +40,7 @@ public class ManageProjectsController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping(value = {"/manage_projects"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/manage_projects"}, method = RequestMethod.GET)
     public String manage_projects(Model model, Principal user) {
         model.addAttribute("projectForm", new Project());
         User currentUser = userService.findByUsername(user.getName());
@@ -52,7 +52,7 @@ public class ManageProjectsController {
         return "manage_projects";
     }
 
-    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST,params = "create")
+    @RequestMapping(value = {"/", "/manage_projects"}, method = RequestMethod.POST,params = "create")
     public String createProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model, Principal user) {
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
@@ -75,7 +75,7 @@ public class ManageProjectsController {
     }
 
     @Transactional
-    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST,params = "delete")
+    @RequestMapping(value = {"/", "/manage_projects"}, method = RequestMethod.POST,params = "delete")
     public String deleteProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user,
                                 @RequestParam(value = "projectNamee") String projectNamee) {
         User currentUser = userService.findByUsername(user.getName());
@@ -101,7 +101,7 @@ public class ManageProjectsController {
 
     @Modifying
     @Transactional
-    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST, params = "modify")
+    @RequestMapping(value = {"/", "/manage_projects"}, method = RequestMethod.POST, params = "modify")
     public String modifyProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user,
                                 @RequestParam(value = "projectNamee")String projectNamee,
                                 @RequestParam(value = "projectDescription") String projectDescription,
@@ -131,7 +131,7 @@ public class ManageProjectsController {
 
     @Modifying
     @Transactional
-    @RequestMapping(value = "/manage_projects", method = RequestMethod.POST, params = "add")
+    @RequestMapping(value = {"/", "/manage_projects"}, method = RequestMethod.POST, params = "add")
     public String addUserToProject(@ModelAttribute("projectForm") Project projectForm, BindingResult bindingResult, Model model,Principal user,
                                    @RequestParam(value = "projectNamee")String projectNamee,
                                    @RequestParam(value = "projectDescription") String projectDescription,

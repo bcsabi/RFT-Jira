@@ -45,7 +45,7 @@ public class BacklogController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/backlog"}, method = RequestMethod.GET)
     public String getTasks(Model model , Principal user,
                            @RequestParam(value="projectName") String projectName) {
         model.addAttribute("taskForm", new Task());
@@ -70,7 +70,7 @@ public class BacklogController {
         return "backlog";
     }
 
-    @RequestMapping(value = {"/", "/backlog"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/backlog"}, method = RequestMethod.POST)
     public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
                              @RequestParam(name = "projectName") String projectName){
         User currentUser = userService.findByUsername(user.getName());
