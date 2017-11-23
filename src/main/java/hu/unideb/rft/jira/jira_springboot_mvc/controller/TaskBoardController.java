@@ -46,16 +46,17 @@ public class TaskBoardController {
         model.addAttribute("lastName",currentUser.getLastName());
         model.addAttribute("projectName", projectName);
 
-        List<Task> tasks = taskRepository.findAll();
+        List<Task> allTasks = taskRepository.findAll();
+        List<Task> tasks = new ArrayList<>();
         List<Task> taskByToDo = new ArrayList<>();
         List<Task> taskByReady = new ArrayList<>();
         List<Task> taskByInProgress = new ArrayList<>();
         List<Task> taskByReadyForTest = new ArrayList<>();
         List<Task> taskByDone = new ArrayList<>();
-
-        for(Task task : tasks){
-            if(!task.getProject_name().equals(projectName)) {
-                tasks.remove(task);
+        
+        for(Task task : allTasks){
+            if(task.getProject_name().equals(projectName)) {
+                tasks.add(task);
             }
         }
 
