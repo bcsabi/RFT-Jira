@@ -31,7 +31,7 @@ input, textarea {
 
 .modify_task {
     position: absolute;
-    margin-top: 20px;
+    margin-top: 0;
     margin-left: 1140px;
     width: 350px;
     display: inline-block;
@@ -88,30 +88,15 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     background-position: 105px 7px;
     display: block;
     position: relative;
-    margin: 60px auto 3%;
+    margin: 10px auto 20px;
 }
 
 .projects_button:hover, .new_task_button:hover, .create_task_button:hover {
     background-color: #3cb0fd;
 }
 
-@media (max-width: 665px) {
-    .new_task_button, .new_task_button:hover {
-        margin: 100px auto 3%;
-    }
-    .tasks {
-        margin-top: 20px;
-    }
-}
-
-@media (min-width: 1600px) {
-    .tasks, .modify_task {
-        zoom: 105%;
-    }
-}
-
 .new_task, #task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.tasks, #current_task_type,
-#current_task_priority {
+#current_task_priority, #current_task_status {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -161,10 +146,13 @@ select option {
 .tasks{
     height: auto;
     width: 1100px;
-    margin-top: 20px;
+    margin-top: 0;
     margin-left: 20px;
     position: absolute;
     display: inline-block;
+    border: 1px solid rgba(3,3,3,0.25);
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
 }
 
 .task_table {
@@ -178,12 +166,12 @@ select option {
     font-size:14px;
     padding:10px 5px;
     border-style:solid;
-    border-width:1px;
+    border-width:2px;
     overflow:hidden;
     word-break:normal;
     border-color:#3cb0fd;
     color: white;
-    background: rgba(3,3,3,0.5);
+    background: rgba(3,3,3,0.6);
     border-top-width:1px;
     border-bottom-width:1px;
     height: 10px;
@@ -248,7 +236,7 @@ select option {
 }
 
 #current_task_priority, #current_task_type, #current_task_votes, #current_task_name, #current_task_description,
-#save_modify_button {
+#save_modify_button, #current_task_status {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 315px;
@@ -256,4 +244,25 @@ select option {
     text-align: center;
 }
 
+#project_name_header {
+    font-family: Arial;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 0;
+    text-align: center;
+}
 
+@media (max-width: 665px) {
+    #project_name_header {
+        margin-top: 100px;
+    }
+    .new_task_button, .new_task_button:hover {
+        margin: 10px auto 20px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .tasks, .modify_task {
+        zoom: 105%;
+    }
+}

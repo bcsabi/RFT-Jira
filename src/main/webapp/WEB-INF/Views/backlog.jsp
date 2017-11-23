@@ -23,6 +23,7 @@
     <li class="taskboard"><a class="taskboard" href="taskboard?projectName=${projectName}">TASK BOARD</a></li>
 </ul>
 
+<h1 id="project_name_header">${projectName} backlog</h1>
 <button class="new_task_button" type="button">NEW TASK</button>
 <div class="new_task">
     <form:form method="POST" modelAttribute="taskForm" class="create_task_body">
@@ -38,7 +39,7 @@
             <form:select id="task_type" path="type">
                 <form:option value="bug">Bug</form:option>
                 <form:option value="improvement">Improvement</form:option>
-                <form:option value="new_feature">New Feature</form:option>
+                <form:option value="new feature">New Feature</form:option>
                 <form:option value="content">Content</form:option>
             </form:select>
         </spring:bind>
@@ -90,7 +91,7 @@
     <select id="current_task_type">
         <option value="bug">Bug</option>
         <option value="improvement">Improvement</option>
-        <option value="new_feature">New Feature</option>
+        <option value="new feature">New Feature</option>
         <option value="content">Content</option>
     </select>
     <select id="current_task_priority">
@@ -99,6 +100,13 @@
         <option value="medium">Medium</option>
         <option value="low">Low</option>
         <option value="lowest">Lowest</option>
+    </select>
+    <select id="current_task_status">
+        <option value="ToDo">To Do</option>
+        <option value="Ready">Ready</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Ready for test">Ready for Test</option>
+        <option value="Done">Done</option>
     </select>
     <input id="current_task_votes" type="text" placeholder="Votes">
     <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
@@ -116,4 +124,4 @@
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
-</html>>
+</html>
