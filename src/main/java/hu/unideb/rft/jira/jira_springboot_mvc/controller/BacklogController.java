@@ -4,7 +4,6 @@ import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 
-import hu.unideb.rft.jira.jira_springboot_mvc.repository.TaskRepository;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
@@ -29,9 +28,6 @@ public class BacklogController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private TaskRepository taskRepository;
 
     @Autowired
     private TaskService taskService;
@@ -68,7 +64,7 @@ public class BacklogController {
         return "backlog";
     }
 
-    @RequestMapping(value = {"/backlog"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/backlog"}, method = RequestMethod.POST, params = "create")
     public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
                              @RequestParam(name = "projectName") String projectName){
         User currentUser = userService.findByUsername(user.getName());
@@ -104,6 +100,5 @@ public class BacklogController {
 
         return "redirect:/backlog?projectName=" + projectName;
     }
-
 
 }

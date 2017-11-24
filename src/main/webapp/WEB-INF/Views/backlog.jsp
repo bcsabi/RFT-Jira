@@ -56,7 +56,7 @@
             <form:input id="votes" type="text" path="votesPoint" placeholder="Votes" autofocus="true"></form:input>
             <form:errors id="error" path="votesPoint"></form:errors>
         </spring:bind>
-        <button class="create_task_button" type="submit">CREATE TASK</button>
+        <button class="create_task_button" type="submit" name="create">CREATE TASK</button>
     </form:form>
 </div>
 
@@ -71,8 +71,8 @@
             <th class="column_name" id="priority_column">PRIORITY</th>
             <th class="column_name" id="votes_column">VOTES</th>
         </tr>
-        <c:forEach items="${tasks}" var="task">
-        <tr>
+        <c:forEach items="${tasks}" var="task" varStatus="loop">
+        <tr class="task" onclick="getTask(${loop.index})" id="${loop.index}">
             <td>${task.id}</td>
             <td><div id="task_name_data">${task.taskName}</div></td>
             <td><div id="task_description_data">${task.description}</div></td>
@@ -85,31 +85,34 @@
 </div>
 
 <div class="modify_task">
-    <h2 id="modify_task">Modify task</h2>
-    <input id="current_task_name" type="text"  placeholder="Task Name">
-    <textarea id="current_task_description" placeholder="Task Description"></textarea>
-    <select id="current_task_type">
-        <option value="bug">Bug</option>
-        <option value="improvement">Improvement</option>
-        <option value="new feature">New Feature</option>
-        <option value="content">Content</option>
-    </select>
-    <select id="current_task_priority">
-        <option value="highest">Highest</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-        <option value="lowest">Lowest</option>
-    </select>
-    <select id="current_task_status">
-        <option value="ToDo">To Do</option>
-        <option value="Ready">Ready</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Ready for test">Ready for Test</option>
-        <option value="Done">Done</option>
-    </select>
-    <input id="current_task_votes" type="text" placeholder="Votes">
-    <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
+    <form:form method="POST" modelAttribute="taskForm">
+        <h2 id="modify_task">Modify task</h2>
+        <input id="current_task_name" type="text"  placeholder="Task Name">
+        <textarea id="current_task_description" placeholder="Task Description"></textarea>
+        <select id="current_task_type">
+            <option value="bug">Bug</option>
+            <option value="improvement">Improvement</option>
+            <option value="new feature">New Feature</option>
+            <option value="content">Content</option>
+        </select>
+        <select id="current_task_priority">
+            <option value="highest">Highest</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+            <option value="lowest">Lowest</option>
+        </select>
+        <select id="current_task_status">
+            <option value="ToDo">To Do</option>
+            <option value="Ready">Ready</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Ready for test">Ready for Test</option>
+            <option value="Done">Done</option>
+        </select>
+        <input id="current_task_votes" type="text" placeholder="Votes">
+        <input type="text" id="current_task_index" name="taskIndex" style="display: none">
+        <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
+    </form:form>
 </div>
 
 <div class="container">
