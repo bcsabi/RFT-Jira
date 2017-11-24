@@ -11,6 +11,8 @@ import hu.unideb.rft.jira.jira_springboot_mvc.validator.TaskValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,7 +68,7 @@ public class BacklogController {
 
     @RequestMapping(value = {"/backlog"}, method = RequestMethod.POST, params = "create")
     public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
-                             @RequestParam(name = "projectName") String projectName){
+                             @RequestParam(value = "projectName") String projectName){
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
@@ -97,6 +99,39 @@ public class BacklogController {
             tasksByCurrentProject.add(task);
         }
         model.addAttribute("tasks", tasksByCurrentProject);
+
+        return "redirect:/backlog?projectName=" + projectName;
+    }
+
+    @Modifying
+    @Transactional
+    @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "modify")
+    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("projectName") String projectName,
+                             @RequestParam("taskName") String taskName,
+                             @RequestParam("taskDescription") String taskDescription,
+                             @RequestParam("taskType") String taskType,
+                             @RequestParam("taskPriority") String taskPriority,
+                             @RequestParam("taskStatus") String taskStatus,
+                             @RequestParam("taskVotes") String taskVotes,
+                             @RequestParam("taskIndex") String taskIndex){
+        Project project = projectService.findByProjectName(projectName);
+
+        logger.info(projectName);
+        List<Task> tasksByCurrentProject = new ArrayList<>();
+
+        for(Task task : project.getTasks()){
+            tasksByCurrentProject.add(task);
+        }
+
+        int index = Integer.parseInt(taskIndex);
+        Task currentTask = tasksByCurrentProject.get(index);
+        currentTask.setTaskName(taskName);
+        currentTask.setDescription(taskDescription);
+        currentTask.setType(taskType);
+        currentTask.setPriority(taskPriority);
+        currentTask.setStatus(taskStatus);
+        currentTask.setVotesPoint(Integer.parseInt(taskVotes));
+        taskService.save(currentTask);
 
         return "redirect:/backlog?projectName=" + projectName;
     }

@@ -87,29 +87,29 @@
 <div class="modify_task">
     <form:form method="POST" modelAttribute="taskForm">
         <h2 id="modify_task">Modify task</h2>
-        <input id="current_task_name" type="text"  placeholder="Task Name">
-        <textarea id="current_task_description" placeholder="Task Description"></textarea>
-        <select id="current_task_type">
+        <input id="current_task_name" type="text" name="taskName"  placeholder="Task Name">
+        <textarea id="current_task_description" name="taskDescription" placeholder="Task Description"></textarea>
+        <select id="current_task_type" name="taskType">
             <option value="bug">Bug</option>
             <option value="improvement">Improvement</option>
             <option value="new feature">New Feature</option>
             <option value="content">Content</option>
         </select>
-        <select id="current_task_priority">
+        <select id="current_task_priority" name="taskPriority">
             <option value="highest">Highest</option>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
             <option value="lowest">Lowest</option>
         </select>
-        <select id="current_task_status">
+        <select id="current_task_status" name="taskStatus">
             <option value="ToDo">To Do</option>
             <option value="Ready">Ready</option>
             <option value="In Progress">In Progress</option>
             <option value="Ready for test">Ready for Test</option>
             <option value="Done">Done</option>
         </select>
-        <input id="current_task_votes" type="text" placeholder="Votes">
+        <input id="current_task_votes" type="text" name="taskVotes" placeholder="Votes">
         <input type="text" id="current_task_index" name="taskIndex" style="display: none">
         <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
     </form:form>
