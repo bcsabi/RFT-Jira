@@ -10,16 +10,20 @@ import org.springframework.stereotype.Service;
 public class TaskServiceImpl implements TaskService {
 
     @Autowired
-    private TaskRepository Taskrepository;
+    private TaskRepository taskRepository;
 
     @Override
     public void save(Task task) {
-        Taskrepository.save(task);
+        taskRepository.save(task);
     }
 
     @Override
     public Task findByTaskname(String taskname) {
-        return Taskrepository.findByTaskName(taskname);
+        return taskRepository.findByTaskName(taskname);
     }
 
+    @Override
+    public void deleteById(Long id) {
+        taskRepository.delete(id);
+    }
 }

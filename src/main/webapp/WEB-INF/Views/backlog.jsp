@@ -112,6 +112,7 @@
         <input id="current_task_votes" type="text" name="taskVotes" placeholder="Votes">
         <input type="text" id="current_task_index" name="taskIndex" style="display: none">
         <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
+        <button id="delete_task_button" type="submit" name="delete">DELETE TASK</button>
     </form:form>
 </div>
 

@@ -136,4 +136,23 @@ public class BacklogController {
         return "redirect:/backlog?projectName=" + projectName;
     }
 
+    @Transactional
+    @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "delete")
+    public String deleteTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("projectName") String projectName,
+                             @RequestParam("taskIndex") String taskIndex){
+        Project project = projectService.findByProjectName(projectName);
+
+        logger.info(projectName);
+        List<Task> tasksByCurrentProject = new ArrayList<>();
+
+        for(Task task : project.getTasks()){
+            tasksByCurrentProject.add(task);
+        }
+
+        int index = Integer.parseInt(taskIndex);
+        taskService.deleteById(tasksByCurrentProject.get(index).getId());
+
+        return "redirect:/backlog?projectName=" + projectName;
+    }
+
 }

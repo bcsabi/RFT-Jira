@@ -6,4 +6,6 @@ public interface TaskService {
     void save(Task task);
 
     Task findByTaskname(String taskname);
+
+    void deleteById(Long id);
 }
