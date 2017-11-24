@@ -1,5 +1,6 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.controller;
 
+import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 import hu.unideb.rft.jira.jira_springboot_mvc.repository.TaskRepository;
@@ -46,7 +47,7 @@ public class TaskBoardController {
         model.addAttribute("lastName",currentUser.getLastName());
         model.addAttribute("projectName", projectName);
 
-        List<Task> allTasks = taskRepository.findAll();
+        Project project = projectService.findByProjectName(projectName);
         List<Task> tasks = new ArrayList<>();
         List<Task> taskByToDo = new ArrayList<>();
         List<Task> taskByReady = new ArrayList<>();
@@ -54,10 +55,8 @@ public class TaskBoardController {
         List<Task> taskByReadyForTest = new ArrayList<>();
         List<Task> taskByDone = new ArrayList<>();
 
-        for(Task task : allTasks){
-            if(task.getProject_name().equals(projectName)) {
-                tasks.add(task);
-            }
+        for(Task task : project.getTasks()){
+            tasks.add(task);
         }
 
         for(Task task : tasks) {

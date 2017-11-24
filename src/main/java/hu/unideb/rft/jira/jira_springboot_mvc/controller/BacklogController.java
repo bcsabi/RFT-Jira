@@ -55,15 +55,13 @@ public class BacklogController {
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
         model.addAttribute("projectName", projectName);
-        List<Task> tasks = taskRepository.findAll();
+        Project project = projectService.findByProjectName(projectName);
 
         logger.info(projectName);
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
-        for(Task task : tasks){
-            if(task.getProject_name().equals(projectName)) {
+        for(Task task : project.getTasks()){
                 tasksByCurrentProject.add(task);
-            }
         }
         model.addAttribute("tasks", tasksByCurrentProject);
 
@@ -94,13 +92,13 @@ public class BacklogController {
 
         taskService.save(taskForm);
 
-        List<Task> tasks = taskRepository.findAll();
+        Project project = projectService.findByProjectName(projectName);
+
+        logger.info(projectName);
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
-        for(Task task : tasks){
-            if(task.getProject_name().equals(projectName)) {
-                tasksByCurrentProject.add(task);
-            }
+        for(Task task : project.getTasks()){
+            tasksByCurrentProject.add(task);
         }
         model.addAttribute("tasks", tasksByCurrentProject);
 
