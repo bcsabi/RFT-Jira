@@ -53,7 +53,7 @@ public class TaskBoardController {
         List<Task> taskByInProgress = new ArrayList<>();
         List<Task> taskByReadyForTest = new ArrayList<>();
         List<Task> taskByDone = new ArrayList<>();
-        
+
         for(Task task : allTasks){
             if(task.getProject_name().equals(projectName)) {
                 tasks.add(task);

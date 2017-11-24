@@ -58,11 +58,11 @@ public class BacklogController {
         List<Task> tasks = taskRepository.findAll();
 
         logger.info(projectName);
-        List<Task> tasksByCurrentProject = taskRepository.findAll();
+        List<Task> tasksByCurrentProject = new ArrayList<>();
 
         for(Task task : tasks){
-            if(!task.getProject_name().equals(projectName)) {
-                tasksByCurrentProject.remove(task);
+            if(task.getProject_name().equals(projectName)) {
+                tasksByCurrentProject.add(task);
             }
         }
         model.addAttribute("tasks", tasksByCurrentProject);
