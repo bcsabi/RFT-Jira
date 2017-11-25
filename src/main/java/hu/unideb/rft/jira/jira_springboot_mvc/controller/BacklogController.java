@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BacklogController {
@@ -60,10 +62,31 @@ public class BacklogController {
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
         for(Task task : project.getTasks()){
-                tasksByCurrentProject.add(task);
+            tasksByCurrentProject.add(task);
+            switch (task.getStatus()) {
+                case "ToDo":
+                    task.setStatus("a");
+                    break;
+                case "Ready":
+                    task.setStatus("b");
+                    break;
+                case "In Progress":
+                    task.setStatus("c");
+                    break;
+                case "Ready for test":
+                    task.setStatus("d");
+                    break;
+                case "Done":
+                    task.setStatus("e");
+                    break;
+            }
         }
-        Collections.sort(tasksByCurrentProject,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
-        model.addAttribute("tasks", tasksByCurrentProject);
+
+
+        Comparator<Task> comparator = Comparator.comparing(task -> task.getStatus());
+        comparator = comparator.thenComparing(Comparator.comparing(task -> task.getTaskName()));
+        List<Task> tasks = tasksByCurrentProject.stream().sorted(comparator).collect(Collectors.toList());
+        model.addAttribute("tasks", tasks);
 
         return "backlog";
     }
@@ -125,8 +148,19 @@ public class BacklogController {
             tasksByCurrentProject.add(task);
         }
 
-        int index = Integer.parseInt(taskIndex);
-        Task currentTask = tasksByCurrentProject.get(index);
+        int index = 0;
+        List<String> tasks = new ArrayList<>();
+        for(Task tsk : tasksByCurrentProject)
+            tasks.add(tsk.getTaskName());
+
+        if (tasks.contains(taskName)) {
+            for (int i = 0; i < tasks.size(); i++) {
+                if(taskName.equals(tasks.get(i))) {
+                    index = i;
+                }
+            }
+        }
+        Task currentTask = taskService.findByTaskname(tasksByCurrentProject.get(index).getTaskName());
         currentTask.setTaskName(taskName);
         currentTask.setDescription(taskDescription);
         currentTask.setType(taskType);

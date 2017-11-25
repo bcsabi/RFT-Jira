@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -78,6 +79,18 @@ public class TaskBoardController {
                     break;
             }
         }
+
+        Collections.sort(taskByToDo,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
+        Collections.sort(taskByReady,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
+        Collections.sort(taskByInProgress,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
+        Collections.sort(taskByReadyForTest,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
+        Collections.sort(taskByDone,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
+
+        Collections.reverse(taskByToDo);
+        Collections.reverse(taskByReady);
+        Collections.reverse(taskByInProgress);
+        Collections.reverse(taskByReadyForTest);
+        Collections.reverse(taskByDone);
 
         model.addAttribute("taskByToDo", taskByToDo);
         model.addAttribute("taskByReady", taskByReady);
