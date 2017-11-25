@@ -266,3 +266,24 @@ select option {
         zoom: 105%;
     }
 }
+
+#myProgress {
+    width: 20%;
+    background-color: white;
+    margin-left: 20px;
+}
+#myBar {
+    width: 0%;
+    height: 30px;
+    background-color: green;
+}
+
+#info {
+    height: 50px;
+    width: 20%;
+    background-color: white;
+    margin-left:20px;
+    margin-top: 0px;
+}
+
+

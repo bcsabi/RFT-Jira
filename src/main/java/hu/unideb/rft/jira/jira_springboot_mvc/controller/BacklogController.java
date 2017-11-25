@@ -82,11 +82,27 @@ public class BacklogController {
             }
         }
 
-
         Comparator<Task> comparator = Comparator.comparing(task -> task.getStatus());
         comparator = comparator.thenComparing(Comparator.comparing(task -> task.getTaskName()));
         List<Task> tasks = tasksByCurrentProject.stream().sorted(comparator).collect(Collectors.toList());
         model.addAttribute("tasks", tasks);
+
+        double donec = 0;
+        double donepoints = 0;
+        double allpoints = 0;
+        for(Task tsk : tasksByCurrentProject) {
+            if (tsk.getStatus().equals("e")) {
+                donec++;
+                donepoints += tsk.getVotesPoint();
+            }
+            allpoints += tsk.getVotesPoint();
+        }
+        model.addAttribute("all_task",tasksByCurrentProject.size());
+        model.addAttribute("donec",(int) donec);
+        model.addAttribute("donepoints",(int) donepoints);
+        model.addAttribute("allpoints",(int) allpoints);
+        model.addAttribute("percentage",(donepoints / allpoints)*100);
+
 
         return "backlog";
     }

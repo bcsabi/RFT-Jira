@@ -8,6 +8,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/backlog.css">
+    <link rel="stylesheet" href="backlog.jsp">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../../resources/js/backlog.js"></script>
@@ -61,7 +62,21 @@
     </form:form>
 </div>
 
+<div id="myProgress">
+    <div id="myBar"></div>
+</div>
+<div id="info">
+    <h4>${allpoints} defined points  ,${all_task} number of tasks  ,${donec} done tasks  ,${donepoints} closed points </h4>
+</div>
 
+<style>
+    #myBar {
+        width: ${percentage}%;
+        height: 30px;
+        background-color: green;
+    }
+</style>
+<br>
 
 <div class="tasks">
     <h2>Tasks</h2>
