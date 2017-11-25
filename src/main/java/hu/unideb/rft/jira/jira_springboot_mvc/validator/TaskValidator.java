@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -42,5 +43,18 @@ public class TaskValidator implements Validator{
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "votesPoint", "NotEmpty");
 
+
+        List<Task> tasks = taskService.findByProjectNamee(task.getProjectNamee());
+        List<String> curr = new ArrayList<>();
+        for(Task tsk : tasks)
+            curr.add(tsk.getTaskName());
+        for(String tskName : curr)
+        {
+            if (tskName.equals(task.getTaskName()))
+            {
+                errors.rejectValue("taskName", "Duplicate.projectForm.taskname");
+                break;
+            }
+        }
     }
 }

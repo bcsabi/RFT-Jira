@@ -6,6 +6,8 @@ import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -23,7 +25,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        taskRepository.delete(id);
+    public Long deleteByTaskName(String taskName) {
+        return taskRepository.deleteByTaskName(taskName);
+    }
+
+    @Override
+    public List<Task> findByProjectNamee(String projectName) {
+        return taskRepository.findByProjectNamee(projectName);
     }
 }

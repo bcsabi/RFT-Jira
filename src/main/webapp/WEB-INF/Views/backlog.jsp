@@ -73,7 +73,7 @@
         </tr>
         <c:forEach items="${tasks}" var="task" varStatus="loop">
         <tr class="task" onclick="getTask(${loop.index})" id="${loop.index}">
-            <td>${task.id}</td>
+            <td>${loop.index + 1}</td>
             <td><div id="task_name_data">${task.taskName}</div></td>
             <td><div id="task_description_data">${task.description}</div></td>
             <td>${task.type}</td>
@@ -87,7 +87,7 @@
 <div class="modify_task">
     <form:form method="POST" modelAttribute="taskForm">
         <h2 id="modify_task">Modify task</h2>
-        <input id="current_task_name" type="text" name="taskName"  placeholder="Task Name">
+        <input id="current_task_name" type="text" name="taskName" placeholder="Task Name">
         <textarea id="current_task_description" name="taskDescription" placeholder="Task Description"></textarea>
         <select id="current_task_type" name="taskType">
             <option value="bug">Bug</option>

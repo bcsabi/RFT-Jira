@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -61,6 +62,7 @@ public class BacklogController {
         for(Task task : project.getTasks()){
                 tasksByCurrentProject.add(task);
         }
+        Collections.sort(tasksByCurrentProject,(a, b) -> b.getTaskName().compareTo(a.getTaskName()));
         model.addAttribute("tasks", tasksByCurrentProject);
 
         return "backlog";
@@ -74,7 +76,7 @@ public class BacklogController {
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
         taskForm.setProject(projectService.findByProjectName(projectName));
-        taskForm.setProject_name(projectName);
+        taskForm.setProjectNamee(projectName);
         taskForm.setStatus("ToDo");
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
@@ -82,7 +84,7 @@ public class BacklogController {
 
         logger.info("CREATE TASK");
         logger.info("SAVED TASK NAME = " + taskForm.getTaskName());
-        logger.info("SAVED TASK TO = " + taskForm.getProject_name());
+        logger.info("SAVED TASK TO = " + taskForm.getProjectNamee());
 
         if(bindingResult.hasErrors()){
             return "redirect:/backlog?projectName=" + projectName;
@@ -139,7 +141,7 @@ public class BacklogController {
     @Transactional
     @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "delete")
     public String deleteTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("projectName") String projectName,
-                             @RequestParam("taskIndex") String taskIndex){
+                             @RequestParam("taskName") String taskName){
         Project project = projectService.findByProjectName(projectName);
 
         logger.info(projectName);
@@ -149,8 +151,21 @@ public class BacklogController {
             tasksByCurrentProject.add(task);
         }
 
-        int index = Integer.parseInt(taskIndex);
-        taskService.deleteById(tasksByCurrentProject.get(index).getId());
+        //int index = Integer.parseInt(taskIndex);
+        //taskService.deleteByTaskName(tasksByCurrentProject.f)
+        int index = 0;
+        List<String> tasks = new ArrayList<>();
+        for(Task tsk : tasksByCurrentProject)
+            tasks.add(tsk.getTaskName());
+
+        if (tasks.contains(taskName)) {
+            for (int i = 0; i < tasks.size(); i++) {
+                if(taskName.equals(tasks.get(i))) {
+                    index = i;
+                }
+            }
+            taskService.deleteByTaskName(tasksByCurrentProject.get(index).getTaskName());
+        }
 
         return "redirect:/backlog?projectName=" + projectName;
     }

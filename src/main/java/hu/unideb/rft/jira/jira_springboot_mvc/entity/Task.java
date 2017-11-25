@@ -17,7 +17,7 @@ public class Task {
     private String creator;
     private String status;
     private String assignedTo;
-    private String project_name;
+    private String projectNamee;
     private Project project;
     private Set<Comment> comments;
 
@@ -111,11 +111,11 @@ public class Task {
         this.comments = comments;
     }
 
-    public String getProject_name() {
-        return project_name;
+    public String getProjectNamee() {
+        return projectNamee;
     }
 
-    public void setProject_name(String project_name) {
-        this.project_name = project_name;
+    public void setProjectNamee(String projectNamee) {
+        this.projectNamee = projectNamee;
     }
 }
