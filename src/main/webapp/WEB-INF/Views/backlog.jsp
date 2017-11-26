@@ -21,8 +21,8 @@
     <li class="logout"><a class="logout" onclick="document.forms['logoutForm'].submit()">LOGOUT</a></li>
     <li class="user"><a class="user" href="profile">${firstName} ${lastName}</a></li>
     <li class="projects"><a class="projects" href="manage_projects">MANAGE PROJECTS</a></li>
-    <li class="backlog"><a class="backlog" href="backlog?projectName=${projectName}">BACKLOG</a></li>
-    <li class="taskboard"><a class="taskboard" href="taskboard?projectName=${projectName}">TASK BOARD</a></li>
+    <li class="backlog"><a class="backlog" href="backlog?id=${id}">BACKLOG</a></li>
+    <li class="taskboard"><a class="taskboard" href="taskboard?id=${id}">TASK BOARD</a></li>
 </ul>
 
 <h1 id="project_name_header">${projectName} backlog</h1>

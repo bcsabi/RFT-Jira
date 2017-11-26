@@ -56,6 +56,7 @@ public class BacklogController {
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
         Project project = projectService.findById(Long.parseLong(id));
+        model.addAttribute("id", id);
         model.addAttribute("projectName", project.getProjectName());
 
         logger.info(project.getProjectName());
@@ -115,7 +116,7 @@ public class BacklogController {
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
         taskForm.setProject(projectService.findById(Long.parseLong(id)));
-        taskForm.setProjectNamee(taskForm.getProject().getProjectName());
+        taskForm.setProjectNamee(projectService.findById(Long.parseLong(id)).getProjectName());
         taskForm.setStatus("ToDo");
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());

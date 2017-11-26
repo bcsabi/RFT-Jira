@@ -47,6 +47,7 @@ public class TaskBoardController {
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         Project project = projectService.findById(Long.parseLong(id));
+        model.addAttribute("id", id);
         model.addAttribute("projectName", project.getProjectName());
 
         List<Task> tasks = new ArrayList<>();
