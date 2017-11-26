@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
+    Project findById(Long id);
     Project findByProjectName(String projectName);
     List<Project> findByUsername(String userName);
     Long deleteById(Long id);

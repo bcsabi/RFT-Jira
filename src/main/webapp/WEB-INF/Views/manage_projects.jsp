@@ -26,7 +26,7 @@
 <div class="my_projects">
     <h2 id="my_projects">My projects (${fn:length(projects)})</h2>
     <c:forEach items="${projects}" var="project" varStatus="loop">
-        <div class="project" onclick="getProject(${loop.index})" id="${loop.index}"><h4 id="projectNameText"><a href="/backlog?projectName=${project.projectName}" >${project.projectName}</a></h4><p id="descriptionText">${project.projectDescription}</p></div>
+        <div class="project" onclick="getProject(${loop.index})" id="${loop.index}"><h4 id="projectNameText"><a href="/backlog?id=${project.id}" >${project.projectName}</a></h4><p id="descriptionText">${project.projectDescription}</p></div>
     </c:forEach>
 </div>
 

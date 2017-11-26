@@ -41,14 +41,14 @@ public class TaskBoardController {
 
 
     @RequestMapping(value = {"/taskboard"}, method = RequestMethod.GET)
-    public String taskboard(Model model, Principal user, @RequestParam(value = "projectName") String projectName) {
+    public String taskboard(Model model, Principal user, @RequestParam(value = "id") String id) {
 
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
-        model.addAttribute("projectName", projectName);
+        Project project = projectService.findById(Long.parseLong(id));
+        model.addAttribute("projectName", project.getProjectName());
 
-        Project project = projectService.findByProjectName(projectName);
         List<Task> tasks = new ArrayList<>();
         List<Task> taskByToDo = new ArrayList<>();
         List<Task> taskByReady = new ArrayList<>();

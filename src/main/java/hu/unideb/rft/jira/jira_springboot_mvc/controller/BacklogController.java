@@ -48,17 +48,17 @@ public class BacklogController {
 
     @RequestMapping(value = {"/backlog"}, method = RequestMethod.GET)
     public String getTasks(Model model , Principal user,
-                           @RequestParam(value="projectName") String projectName) {
+                           @RequestParam(value="id") String id) {
         model.addAttribute("taskForm", new Task());
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
-        model.addAttribute("projectName", projectName);
-        Project project = projectService.findByProjectName(projectName);
+        Project project = projectService.findById(Long.parseLong(id));
+        model.addAttribute("projectName", project.getProjectName());
 
-        logger.info(projectName);
+        logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
         for(Task task : project.getTasks()){
@@ -109,13 +109,13 @@ public class BacklogController {
 
     @RequestMapping(value = {"/backlog"}, method = RequestMethod.POST, params = "create")
     public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
-                             @RequestParam(value = "projectName") String projectName){
+                             @RequestParam(value = "id") String id){
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
-        taskForm.setProject(projectService.findByProjectName(projectName));
-        taskForm.setProjectNamee(projectName);
+        taskForm.setProject(projectService.findById(Long.parseLong(id)));
+        taskForm.setProjectNamee(taskForm.getProject().getProjectName());
         taskForm.setStatus("ToDo");
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
@@ -126,14 +126,14 @@ public class BacklogController {
         logger.info("SAVED TASK TO = " + taskForm.getProjectNamee());
 
         if(bindingResult.hasErrors()){
-            return "redirect:/backlog?projectName=" + projectName;
+            return "redirect:/backlog?id=" + id;
         }
 
         taskService.save(taskForm);
 
-        Project project = projectService.findByProjectName(projectName);
+        Project project = projectService.findById(Long.parseLong(id));
 
-        logger.info(projectName);
+        logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
         for(Task task : project.getTasks()){
@@ -141,23 +141,22 @@ public class BacklogController {
         }
         model.addAttribute("tasks", tasksByCurrentProject);
 
-        return "redirect:/backlog?projectName=" + projectName;
+        return "redirect:/backlog?id=" + id;
     }
 
     @Modifying
     @Transactional
     @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "modify")
-    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("projectName") String projectName,
+    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("id") String id,
                              @RequestParam("taskName") String taskName,
                              @RequestParam("taskDescription") String taskDescription,
                              @RequestParam("taskType") String taskType,
                              @RequestParam("taskPriority") String taskPriority,
                              @RequestParam("taskStatus") String taskStatus,
-                             @RequestParam("taskVotes") String taskVotes,
-                             @RequestParam("taskIndex") String taskIndex){
-        Project project = projectService.findByProjectName(projectName);
+                             @RequestParam("taskVotes") String taskVotes){
+        Project project = projectService.findById(Long.parseLong(id));
 
-        logger.info(projectName);
+        logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
         for(Task task : project.getTasks()){
@@ -185,16 +184,16 @@ public class BacklogController {
         currentTask.setVotesPoint(Integer.parseInt(taskVotes));
         taskService.save(currentTask);
 
-        return "redirect:/backlog?projectName=" + projectName;
+        return "redirect:/backlog?id=" + id;
     }
 
     @Transactional
     @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "delete")
-    public String deleteTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("projectName") String projectName,
+    public String deleteTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("id") String id,
                              @RequestParam("taskName") String taskName){
-        Project project = projectService.findByProjectName(projectName);
+        Project project = projectService.findById(Long.parseLong(id));
 
-        logger.info(projectName);
+        logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
 
         for(Task task : project.getTasks()){
@@ -217,7 +216,7 @@ public class BacklogController {
             taskService.deleteByTaskName(tasksByCurrentProject.get(index).getTaskName());
         }
 
-        return "redirect:/backlog?projectName=" + projectName;
+        return "redirect:/backlog?id=" + id;
     }
 
 }

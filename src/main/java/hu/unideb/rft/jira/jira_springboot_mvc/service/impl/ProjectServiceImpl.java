@@ -12,23 +12,28 @@ import java.util.List;
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
-    private ProjectRepository Projectrepository;
+    private ProjectRepository projectRepository;
 
     @Override
     public void save(Project project) {
-        Projectrepository.save(project);
+        projectRepository.save(project);
+    }
+
+    @Override
+    public Project findById(Long id) {
+        return projectRepository.findById(id);
     }
 
     @Override
     public Project findByProjectName(String projectName) {
-        return Projectrepository.findByProjectName(projectName);
+        return projectRepository.findByProjectName(projectName);
     }
 
     @Override
-    public List<Project> findByUsername(String userName) { return Projectrepository.findByUsername(userName); }
+    public List<Project> findByUsername(String userName) { return projectRepository.findByUsername(userName); }
 
     @Override
     public Long deleteById(Long id) {
-        return Projectrepository.deleteById(id);
+        return projectRepository.deleteById(id);
     }
 }
