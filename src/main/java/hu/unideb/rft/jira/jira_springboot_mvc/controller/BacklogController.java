@@ -48,19 +48,20 @@ public class BacklogController {
 
     @RequestMapping(value = {"/backlog"}, method = RequestMethod.GET)
     public String getTasks(Model model , Principal user,
-                           @RequestParam(value="id") String id) {
+                           @RequestParam(value="pid") String pid) {
         model.addAttribute("taskForm", new Task());
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
-        Project project = projectService.findById(Long.parseLong(id));
-        model.addAttribute("id", id);
+        Project project = projectService.findById(Long.parseLong(pid));
+        model.addAttribute("pid", pid);
         model.addAttribute("projectName", project.getProjectName());
 
         logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
+
 
         for(Task task : project.getTasks()){
             tasksByCurrentProject.add(task);
@@ -83,6 +84,7 @@ public class BacklogController {
             }
         }
 
+
         Comparator<Task> comparator = Comparator.comparing(task -> task.getStatus());
         comparator = comparator.thenComparing(Comparator.comparing(task -> task.getTaskName()));
         List<Task> tasks = tasksByCurrentProject.stream().sorted(comparator).collect(Collectors.toList());
@@ -104,35 +106,35 @@ public class BacklogController {
         model.addAttribute("allpoints",(int) allpoints);
         model.addAttribute("percentage",(donepoints / allpoints)*100);
 
-
         return "backlog";
     }
 
     @RequestMapping(value = {"/backlog"}, method = RequestMethod.POST, params = "create")
     public String createTask(@ModelAttribute("taskForm") Task taskForm, BindingResult bindingResult, Model model, Principal user,
-                             @RequestParam(value = "id") String id){
+                             @RequestParam(value = "pid") String pid){
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
         taskForm.setCreator(currentUser.getUsername());
-        taskForm.setProject(projectService.findById(Long.parseLong(id)));
-        taskForm.setProjectNamee(projectService.findById(Long.parseLong(id)).getProjectName());
+        taskForm.setProject(projectService.findById(Long.parseLong(pid)));
+        taskForm.setProjectNamee(projectService.findById(Long.parseLong(pid)).getProjectName());
         taskForm.setStatus("ToDo");
         taskValidator.validate(taskForm, bindingResult);
         List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
         model.addAttribute("projects",currentProjects);
+        System.out.println(taskForm.getId());
 
         logger.info("CREATE TASK");
         logger.info("SAVED TASK NAME = " + taskForm.getTaskName());
         logger.info("SAVED TASK TO = " + taskForm.getProjectNamee());
 
         if(bindingResult.hasErrors()){
-            return "redirect:/backlog?id=" + id;
+            return "redirect:/backlog?pid=" + pid;
         }
 
         taskService.save(taskForm);
 
-        Project project = projectService.findById(Long.parseLong(id));
+        Project project = projectService.findById(Long.parseLong(pid));
 
         logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
@@ -142,7 +144,7 @@ public class BacklogController {
         }
         model.addAttribute("tasks", tasksByCurrentProject);
 
-        return "redirect:/backlog?id=" + id;
+        return "redirect:/backlog?pid=" + pid;
     }
 
     @Modifying

@@ -96,7 +96,7 @@ public class Task {
     }
 
     @ManyToOne
-    @JoinColumn(name = "project_id")
+    //@JoinColumn(name = "project_id")
     public Project getProject() {return project; }
 
     public void setProject(Project project) { this.project = project; }

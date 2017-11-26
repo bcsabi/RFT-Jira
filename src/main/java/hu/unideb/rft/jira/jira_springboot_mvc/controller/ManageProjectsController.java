@@ -69,6 +69,10 @@ public class ManageProjectsController {
             return "manage_projects";
         }
 
+        logger.info("CREATE PROJ");
+        logger.info("SAVED TASK NAME = " + projectForm.getProjectName());
+        //logger.info("SAVED TASK TO = " + taskForm.getProjectNamee());
+
         projectService.save(projectForm);
 
         return "redirect:/manage_projects";

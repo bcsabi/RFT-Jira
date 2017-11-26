@@ -33,9 +33,4 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> findByProjectNamee(String projectName) {
         return taskRepository.findByProjectNamee(projectName);
     }
-
-    @Override
-    public Task findById(Long id) {
-        return taskRepository.findById(id);
-    }
 }
