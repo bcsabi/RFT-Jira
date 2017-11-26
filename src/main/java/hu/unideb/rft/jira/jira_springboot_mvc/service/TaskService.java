@@ -11,5 +11,6 @@ public interface TaskService {
 
     Long deleteByTaskName(String taskName);
     List<Task> findByProjectNamee(String projectName);
+    Task findById(Long id);
 }
 

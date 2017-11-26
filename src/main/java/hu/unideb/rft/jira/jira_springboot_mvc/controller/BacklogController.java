@@ -171,12 +171,12 @@ public class BacklogController {
 
         if (tasks.contains(taskName)) {
             for (int i = 0; i < tasks.size(); i++) {
-                if(taskName.equals(tasks.get(i))) {
+                if (taskName.equals(tasks.get(i))) {
                     index = i;
                 }
             }
         }
-        Task currentTask = taskService.findByTaskname(tasksByCurrentProject.get(index).getTaskName());
+        Task currentTask = tasksByCurrentProject.get(index);
         currentTask.setTaskName(taskName);
         currentTask.setDescription(taskDescription);
         currentTask.setType(taskType);
