@@ -150,14 +150,14 @@ public class BacklogController {
     @Modifying
     @Transactional
     @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "modify")
-    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("id") String id,
+    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("pid") String pid,
                              @RequestParam("taskName") String taskName,
                              @RequestParam("taskDescription") String taskDescription,
                              @RequestParam("taskType") String taskType,
                              @RequestParam("taskPriority") String taskPriority,
                              @RequestParam("taskStatus") String taskStatus,
                              @RequestParam("taskVotes") String taskVotes){
-        Project project = projectService.findById(Long.parseLong(id));
+        Project project = projectService.findById(Long.parseLong(pid));
 
         logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
@@ -187,14 +187,14 @@ public class BacklogController {
         currentTask.setVotesPoint(Integer.parseInt(taskVotes));
         taskService.save(currentTask);
 
-        return "redirect:/backlog?id=" + id;
+        return "redirect:/backlog?pid=" + pid;
     }
 
     @Transactional
     @RequestMapping(value = "/backlog", method = RequestMethod.POST, params = "delete")
-    public String deleteTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("id") String id,
+    public String deleteTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("pid") String pid,
                              @RequestParam("taskName") String taskName){
-        Project project = projectService.findById(Long.parseLong(id));
+        Project project = projectService.findById(Long.parseLong(pid));
 
         logger.info(project.getProjectName());
         List<Task> tasksByCurrentProject = new ArrayList<>();
@@ -219,7 +219,7 @@ public class BacklogController {
             taskService.deleteByTaskName(tasksByCurrentProject.get(index).getTaskName());
         }
 
-        return "redirect:/backlog?id=" + id;
+        return "redirect:/backlog?pid=" + pid;
     }
 
 }
