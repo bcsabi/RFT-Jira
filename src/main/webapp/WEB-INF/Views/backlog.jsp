@@ -83,7 +83,7 @@
             <th class="column_name" id="votes_column">VOTES</th>
         </tr>
         <c:forEach items="${tasks}" var="task" varStatus="loop">
-        <tr class="task" onclick="getTask(${loop.index})" id="${loop.index}">
+        <tr class="task" onclick="getTask(${loop.index})" id="${loop.index}" data-href="manage_task?pid=${pid}&taskID=${task.id}" >
             <td>${loop.index + 1}</td>
             <td><div id="task_name_data">${task.taskName}</div></td>
             <td><div id="task_description_data">${task.description}</div></td>

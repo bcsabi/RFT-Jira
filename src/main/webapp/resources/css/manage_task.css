@@ -1,0 +1,110 @@
+#task_name_header {
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.task_details {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 1470px;
+    border-radius: 5px;
+    border: 1px solid rgba(3,3,3,0.25);
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
+}
+
+.task_details h2 {
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+
+.task_details label {
+    color: white;
+    font-family: Arial;
+}
+
+input, textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background: rgba(3,3,3,0.5);
+    color: white;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    padding: 7px;
+    outline: none;
+    font-family: "Arial";
+    text-align: center;
+    resize: none;
+}
+
+button {
+    background: #4CAF50;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "Arial";
+    color: white;
+    font-size: 12px;
+    padding: 10px 20px 10px 20px;
+    width: 130px ;
+    text-decoration: none;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3cb0fd;
+}
+
+.save_task_modify_button {
+    width: 300px;
+    margin-left: 20px;
+}
+
+#task_name, #task_type, #task_status, #task_votes, #task_assigned_to, #task_priority {
+    position: relative;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+#task_assigned_to {
+    margin-left: 25px;
+}
+
+#task_priority, #task_votes, #task_status {
+    margin-left: 65px;
+}
+
+#task_type {
+    margin-left: 75px;
+}
+
+
+label[for=task_type], label[for=task_status], label[for=task_priority], label[for=task_votes], label[for=task_assigned_to], label[for=task_name] {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#task_description {
+    position: absolute;
+    height: 350px;
+    width: 950px;
+    top: 80px;
+    margin-left: 500px;
+}
+
+
+

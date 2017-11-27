@@ -24,6 +24,10 @@ $(document).ready(function() {
             $('.new_task_button').css("background-color", "#4CAF50");
             $('.new_task_button').css("border", "1px solid #4CAF50");
         }
+    })
+
+    $('tr[data-href]').on("click", function() {
+        document.location = $(this).data('href');
     });
 
     $("tr").click(function() {
