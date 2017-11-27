@@ -35,7 +35,7 @@ input, textarea {
     margin-top: 10px;
     margin-left: 1140px;
     width: 350px;
-    display: inline-block;
+    display: none;
     border-radius: 5px;
     border: 1px solid rgba(3,3,3,0.25);
     background: rgba(3,3,3,0.25);
@@ -79,8 +79,9 @@ input:focus, textarea:focus {
     background-repeat: no-repeat;
     background-position: 105px 7px;
     display: block;
-    position: relative;
-    margin: 10px auto 20px;
+    position: absolute;
+    margin-top: 0;
+    margin-left: 700px;
 }
 
 .projects_button:hover, .new_task_button:hover, .create_task_button:hover, #save_modify_button:hover, #delete_task_button:hover {
@@ -124,6 +125,9 @@ select option {
 .new_task{
     z-index: 20;
     display: none;
+    position: absolute;
+    margin-left: 515px;
+    margin-top: 50px;
 }
 
 #task_name, #task_description, #task_type, #task_priority, #votes, #task_project ,.create_task_button {
@@ -137,8 +141,8 @@ select option {
 
 .tasks{
     height: auto;
-    width: 1100px;
-    margin-top: 10px;
+    width: 1480px;
+    margin-top: 70px;
     margin-left: 20px;
     position: absolute;
     display: inline-block;
@@ -146,6 +150,7 @@ select option {
     background: rgba(3,3,3,0.25);
     box-shadow: 1px 1px 50px #000;
 }
+
 
 .task_table {
     border-collapse:collapse;
@@ -197,8 +202,12 @@ select option {
     width: 50px;
 }
 
+#name_column {
+    width: 250px;
+}
+
 #description_column {
-    width: 400px;
+    width: 650px;
 }
 
 #task_description_data, #task_name_data {
@@ -241,7 +250,6 @@ select option {
     font-family: Arial;
     color: white;
     margin-top: 50px;
-    margin-bottom: 0;
     text-align: center;
 }
 
@@ -250,7 +258,7 @@ select option {
         margin-top: 100px;
     }
     .new_task_button, .new_task_button:hover {
-        margin: 10px auto 20px;
+        margin-top: 10px;
     }
 }
 
@@ -262,9 +270,10 @@ select option {
 
 #myProgress {
     position: absolute;
-    width: 525px;
+    width: 900px;
     background-color: #3cb0fd;
     margin-left: 20px;
+    margin-top: 60px;
     height: 25px;
     display: inline-block;
     border-radius: 8px;
@@ -285,8 +294,9 @@ select option {
     position: absolute;
     height: 25px;
     width: 548px;
-    margin-left: 568px;
+    margin-left: 950px;
     margin-bottom: 20px;
+    margin-top: 60px;
     display: inline-block;
     border-radius: 5px;
     border: 1px solid rgba(3,3,3,0.25);
@@ -312,4 +322,5 @@ select option {
     float: right;
     margin-right: 20px;
 }
+
 

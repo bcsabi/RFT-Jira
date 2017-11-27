@@ -110,7 +110,7 @@ input:focus, textarea:focus {
 }
 
 #current_project_description {
-    height: 200px;
+    height: 260px;
     width: 315px;
     margin-top:3%;
     margin-left:5%;
@@ -139,7 +139,7 @@ input:focus, textarea:focus {
     background-repeat: no-repeat;
     background-position: 115px 5px;
     cursor: pointer;
-    display: inline-block;
+    display: none;
 }
 
 #add_member_button:hover {
@@ -161,7 +161,7 @@ input:focus, textarea:focus {
     width: 30px;
     height: 30px;
     cursor: pointer;
-    display: inline-block;
+    display: none;
 }
 
 #create_project_button:hover, #delete_project_button:hover, #delete_member_button:hover, #save_modify_button:hover {
@@ -230,7 +230,7 @@ input:focus, textarea:focus {
     width: 315px;
     height: 140px;
     text-align: center;
-    display: block;
+    display: none;
     overflow-y: scroll;
 }
 
@@ -251,7 +251,7 @@ input:focus, textarea:focus {
 
 #delete_member_button, #add_member_button {
     width: 146px;
-    display: inline-block;
+    display: none;
     margin-bottom: 2px;
 }
 
@@ -262,4 +262,3 @@ input:focus, textarea:focus {
 a {
     color: inherit;
 }
-
