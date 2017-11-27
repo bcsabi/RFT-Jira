@@ -88,15 +88,6 @@ input:focus, textarea:focus {
     background: rgba(3,3,3,.3);
 }
 
-::-webkit-input-placeholder {
-    color: #ddd;
-}
-
-textarea::-webkit-input-placeholder, textarea:-moz-placeholder,
-textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
-    color: #ddd;
-}
-
 #project_name, #project_description {
     width: 315px;
     margin-top:3%;

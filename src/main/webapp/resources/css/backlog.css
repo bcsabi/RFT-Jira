@@ -27,11 +27,12 @@ input, textarea {
     outline: none;
     margin-left: 35%;
     display: flex;
+    font-family: "Arial";
 }
 
 .modify_task {
     position: absolute;
-    margin-top: 0;
+    margin-top: 10px;
     margin-left: 1140px;
     width: 350px;
     display: inline-block;
@@ -45,15 +46,6 @@ input:focus, textarea:focus {
     outline: none;
     box-shadow: 3px 3px 10px #333;
     background: rgba(3,3,3,.3);
-}
-
-::-webkit-input-placeholder {
-    color: #ddd;
-}
-
-textarea::-webkit-input-placeholder, textarea:-moz-placeholder,
-textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
-    color: #ddd;
 }
 
 .projects_button, .new_task_button, .create_task_button, #save_modify_button, #delete_task_button{
@@ -91,7 +83,7 @@ textarea::-moz-placeholder, textarea:-ms-input-placeholder  {
     margin: 10px auto 20px;
 }
 
-.projects_button:hover, .new_task_button:hover, .create_task_button:hover {
+.projects_button:hover, .new_task_button:hover, .create_task_button:hover, #save_modify_button:hover, #delete_task_button:hover {
     background-color: #3cb0fd;
 }
 
@@ -146,7 +138,7 @@ select option {
 .tasks{
     height: auto;
     width: 1100px;
-    margin-top: 0;
+    margin-top: 10px;
     margin-left: 20px;
     position: absolute;
     display: inline-block;
@@ -192,7 +184,7 @@ select option {
     width: 150px;
 }
 
-.task_table tr:hover {
+.task_table tr:hover, tr.selected {
     background-color: #3cb0fd;
     cursor: pointer;
 }
@@ -236,12 +228,13 @@ select option {
 }
 
 #current_task_priority, #current_task_type, #current_task_votes, #current_task_name, #current_task_description,
-#save_modify_button, #current_task_status {
+#save_modify_button, #current_task_status, #delete_task_button, #current_task_assigned_to {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 315px;
     margin-left: 20px;
     text-align: center;
+    color: white;
 }
 
 #project_name_header {
@@ -268,22 +261,55 @@ select option {
 }
 
 #myProgress {
-    width: 20%;
-    background-color: white;
+    position: absolute;
+    width: 525px;
+    background-color: #3cb0fd;
     margin-left: 20px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
+
 #myBar {
-    width: 0%;
-    height: 30px;
-    background-color: green;
+    font-size: 18px;
+    background-color: #4CAF50;
+    height: 25px;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 #info {
-    height: 50px;
-    width: 20%;
-    background-color: white;
-    margin-left:20px;
-    margin-top: 0px;
+    position: absolute;
+    height: 25px;
+    width: 548px;
+    margin-left: 568px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid rgba(3,3,3,0.25);
+    background: rgba(3,3,3,0.25);
+    color: white;
+    font-family: "Arial";
+    padding-top: 0;
+    font-size: 16px;
+    text-align: center;
+    vertical-align:top;
 }
 
+#info p {
+    margin-top: 2px;
+}
+
+#left {
+    float: left;
+    margin-left: 20px;
+}
+
+#right {
+    float: right;
+    margin-right: 20px;
+}
 

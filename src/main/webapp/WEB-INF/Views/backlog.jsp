@@ -62,21 +62,13 @@
     </form:form>
 </div>
 
-<div id="myProgress">
-    <div id="myBar"></div>
-</div>
-<div id="info">
-    <h4>${allpoints} defined points  ,${all_task} number of tasks  ,${donec} done tasks  ,${donepoints} closed points </h4>
+<div class="progress" id="myProgress">
+    <div class="progress-bar progress-bar-success" id="myBar" style="width: ${percentage}%">${percentage}%</div>
 </div>
 
-<style>
-    #myBar {
-        width: ${percentage}%;
-        height: 30px;
-        background-color: green;
-    }
-</style>
-<br>
+<div id="info">
+    <p id="left">${all_task} number of tasks \ ${donec} done tasks</p> <p id="right">${allpoints} defined points \ ${donepoints} closed points</p>
+</div><br>
 
 <div class="tasks">
     <h2>Tasks</h2>
@@ -87,6 +79,7 @@
             <th class="column_name" id="description_column">DESCRIPTION</th>
             <th class="column_name" id="type_column">TYPE</th>
             <th class="column_name" id="priority_column">PRIORITY</th>
+            <th class="column_name" id="status_column">STATUS</th>
             <th class="column_name" id="votes_column">VOTES</th>
         </tr>
         <c:forEach items="${tasks}" var="task" varStatus="loop">
@@ -96,6 +89,7 @@
             <td><div id="task_description_data">${task.description}</div></td>
             <td>${task.type}</td>
             <td>${task.priority}</td>
+            <td>${task.status}</td>
             <td>${task.votesPoint}</td>
         </tr>
         </c:forEach>
@@ -128,6 +122,7 @@
             <option value="Done">Done</option>
         </select>
         <input id="current_task_votes" type="text" name="taskVotes" placeholder="Votes">
+        <input id="current_task_assigned_to" type="text" placeholder="Assign to ... ">
         <input type="text" id="current_task_index" name="taskIndex" style="display: none">
         <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
         <button id="delete_task_button" type="submit" name="delete">DELETE TASK</button>

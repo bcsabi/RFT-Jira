@@ -65,27 +65,10 @@ public class BacklogController {
 
         for(Task task : project.getTasks()){
             tasksByCurrentProject.add(task);
-            switch (task.getStatus()) {
-                case "ToDo":
-                    task.setStatus("a");
-                    break;
-                case "Ready":
-                    task.setStatus("b");
-                    break;
-                case "In Progress":
-                    task.setStatus("c");
-                    break;
-                case "Ready for test":
-                    task.setStatus("d");
-                    break;
-                case "Done":
-                    task.setStatus("e");
-                    break;
-            }
         }
 
 
-        Comparator<Task> comparator = Comparator.comparing(task -> task.getStatus());
+        Comparator<Task> comparator = Comparator.comparing(task -> task.getId());
         comparator = comparator.thenComparing(Comparator.comparing(task -> task.getTaskName()));
         List<Task> tasks = tasksByCurrentProject.stream().sorted(comparator).collect(Collectors.toList());
         model.addAttribute("tasks", tasks);
@@ -94,7 +77,7 @@ public class BacklogController {
         double donepoints = 0;
         double allpoints = 0;
         for(Task tsk : tasksByCurrentProject) {
-            if (tsk.getStatus().equals("e")) {
+            if (tsk.getStatus().equals("Done")) {
                 donec++;
                 donepoints += tsk.getVotesPoint();
             }
@@ -104,7 +87,8 @@ public class BacklogController {
         model.addAttribute("donec",(int) donec);
         model.addAttribute("donepoints",(int) donepoints);
         model.addAttribute("allpoints",(int) allpoints);
-        model.addAttribute("percentage",(donepoints / allpoints)*100);
+        int percentage = (int) ((donepoints / allpoints) * 100);
+        model.addAttribute("percentage",percentage);
 
         return "backlog";
     }
