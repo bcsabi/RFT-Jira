@@ -39,19 +39,19 @@
         </spring:bind>
         <spring:bind path="type">
             <form:select id="task_type" path="type">
-                <form:option value="bug">Bug</form:option>
-                <form:option value="improvement">Improvement</form:option>
-                <form:option value="new feature">New Feature</form:option>
-                <form:option value="content">Content</form:option>
+                <form:option value="Bug">Bug</form:option>
+                <form:option value="Improvement">Improvement</form:option>
+                <form:option value="New feature">New feature</form:option>
+                <form:option value="Content">Content</form:option>
             </form:select>
         </spring:bind>
         <spring:bind path="priority">
             <form:select id="task_priority" path="priority">
-                <form:option value="highest">Highest</form:option>
-                <form:option value="high">High</form:option>
-                <form:option value="medium">Medium</form:option>
-                <form:option value="low">Low</form:option>
-                <form:option value="lowest">Lowest</form:option>
+                <form:option value="Highest">Highest</form:option>
+                <form:option value="High">High</form:option>
+                <form:option value="Medium">Medium</form:option>
+                <form:option value="Low">Low</form:option>
+                <form:option value="Lowest">Lowest</form:option>
             </form:select>
         </spring:bind>
         <spring:bind path="taskName" >

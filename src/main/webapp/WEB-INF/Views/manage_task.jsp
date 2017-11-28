@@ -29,13 +29,33 @@
     <input id="task_assigned_to" type="text" placeholder="Assigned to..." value="${currentTask.assignedTo} "><br>
 
     <label for="task_type">Type:</label>
-    <input id="task_type" type="text" value="${currentTask.type}"><br>
+    <select id="task_type">
+        <option selected = "selected" value="${currentTask.type}" style="display: none">${currentTask.type}</option>
+        <option value="Bug">Bug</option>
+        <option value="Improvement">Improvement</option>
+        <option value="New feature">New feature</option>
+        <option value="Content">Content</option>
+    </select><br>
 
     <label for="task_priority">Priority</label>
-    <input id="task_priority" type="text" value="${currentTask.priority}"><br>
+    <select id="task_priority">
+        <option select="selected" value="${currentTask.priority}" style="display: none">${currentTask.priority}</option>
+        <option value="Highest">Highest</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+        <option value="Lowest">Lowest</option>
+    </select><br>
 
     <label for="task_status">Status:</label>
-    <input id="task_status" type="text" value="${currentTask.status}"><br>
+    <select id="task_status" name="taskStatus">
+        <option selected = "selected" value="${currentTask.status}" style="display: none">${currentTask.status}</option>
+        <option value="ToDo">To Do</option>
+        <option value="Ready">Ready</option>
+        <option value="In progress">In progress</option>
+        <option value="Ready for test">Ready for Test</option>
+        <option value="Done">Done</option>
+    </select><br>
 
     <label for="task_votes">Points:</label>
     <input id="task_votes" type="text" value="${currentTask.votesPoint}"><br>

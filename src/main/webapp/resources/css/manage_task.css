@@ -27,7 +27,7 @@
     font-family: Arial;
 }
 
-input, textarea {
+input, textarea, select{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -46,6 +46,7 @@ input, textarea {
     font-family: "Arial";
     text-align: center;
     resize: none;
+    width: 200px;
 }
 
 button {
@@ -71,7 +72,7 @@ button:hover {
 }
 
 .save_task_modify_button {
-    width: 300px;
+    width: 320px;
     margin-left: 20px;
 }
 
