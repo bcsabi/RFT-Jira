@@ -2,6 +2,7 @@
     color: white;
     text-align: center;
     margin-top: 50px;
+    font-family: Arial;
 }
 
 .task_details {
@@ -106,5 +107,9 @@ label[for=task_type], label[for=task_status], label[for=task_priority], label[fo
     margin-left: 500px;
 }
 
-
+@media (max-width: 1366px) {
+    .task_details {
+        zoom: 90%;
+    }
+}
 

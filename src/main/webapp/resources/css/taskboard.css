@@ -97,3 +97,9 @@
     font-family: Arial;
     font-size: 12px;
 }
+
+@media (max-width: 1366px) {
+    .board, #project_name_header {
+        zoom: 90%;
+    }
+}

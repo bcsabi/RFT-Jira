@@ -49,3 +49,9 @@ li a {
 .user:hover, .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover {
     background-color: steelblue;
 }
+
+@media (max-width: 1366px) {
+    li {
+        zoom: 90%;
+    }
+}

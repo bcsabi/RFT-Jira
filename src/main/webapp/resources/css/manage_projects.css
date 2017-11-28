@@ -1,7 +1,6 @@
 .backlog, .taskboard, .projects{
     float: left;
 }
-
 .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover{
     background-color: steelblue;
 }
@@ -59,6 +58,12 @@ textarea {
 @media (min-width: 1600px) {
     .new_project, .my_projects, .modify_project {
         zoom: 105%;
+    }
+}
+
+@media (max-width: 1366px) {
+    .new_project, .my_projects, .modify_project {
+        zoom: 90%;
     }
 }
 
