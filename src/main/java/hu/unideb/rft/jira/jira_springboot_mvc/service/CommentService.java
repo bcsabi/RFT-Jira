@@ -8,5 +8,5 @@ public interface CommentService {
 
     void save(Comment comment);
 
-    List<Comment> findByTaskId(Long taskId);
+    void deleteById(Long id);
 }

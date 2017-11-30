@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +68,21 @@
 
         <button class="save_task_modify_button" type="submit" name="modify">SAVE CHANGES</button>
     </form:form>
+
+    <form:form method="POST" modelAttribute="commentForm">
+        <spring:bind path="commentText">
+            <form:textarea id="comment_text" type="text" path="commentText" placeholder="Comment" autofocus="true"></form:textarea>
+            <form:errors id="error" path="commentText"></form:errors>
+        </spring:bind>
+        <button class="create_comment_button" type="submit" name="create_comment">CREATE COMMENT</button>
+    </form:form>
+    <td>
+        <c:forEach items="${comments}" var="comment">
+            <c:out value="${comment.commentText}"></c:out>
+            <c:out value="${comment.username}"></c:out>
+            <c:out value="${comment.dateTime}"></c:out>
+        </c:forEach>
+    <td/>
 </div>
 
 

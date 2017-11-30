@@ -102,7 +102,7 @@ public class Task {
     public void setProject(Project project) { this.project = project; }
 
     @OneToMany
-    @JoinTable(name = "task_comment", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    @JoinColumn(name = "comment_id")
     public Set<Comment> getComments() {
         return comments;
     }

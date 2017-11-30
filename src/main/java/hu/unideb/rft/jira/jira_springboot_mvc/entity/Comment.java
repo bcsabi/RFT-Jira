@@ -1,16 +1,20 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Table(name = "comment")
-public class Comment implements Comparable<Comment>{
+public class Comment{
 
     private Long id;
     private String username;
-    private String comment;
-    private Date date;
+    @Size(max = 3000)
+    private String commentText;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
     private Task task;
 
     @Id
@@ -31,34 +35,29 @@ public class Comment implements Comparable<Comment>{
         this.username = username;
     }
 
-    public String getComment() {
-        return comment;
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     @ManyToOne
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "comment_id")
     public Task getTask() {
         return task;
     }
 
     public void setTask(Task task) {
         this.task = task;
-    }
-
-    @Override
-    public int compareTo(Comment o) {
-        return getDate().compareTo(o.getDate());
     }
 }

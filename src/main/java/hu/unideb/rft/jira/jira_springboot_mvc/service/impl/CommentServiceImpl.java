@@ -23,14 +23,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> findByTaskId(Long taskId) {
-        List<Comment> goodComments = new ArrayList<>();
-
-        for(Comment comment : commentRepository.findAll()){
-            if(comment.getTask().getId().equals(taskId)){
-                goodComments.add(comment);
-            }
-        }
-        return goodComments;
+    public void deleteById(Long id) {
+        commentRepository.delete(id);
     }
 }

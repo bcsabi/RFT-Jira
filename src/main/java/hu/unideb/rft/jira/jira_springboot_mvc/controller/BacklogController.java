@@ -1,9 +1,11 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.controller;
 
+import hu.unideb.rft.jira.jira_springboot_mvc.entity.Comment;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 
+import hu.unideb.rft.jira.jira_springboot_mvc.service.CommentService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.TaskService;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.UserService;
@@ -36,6 +38,9 @@ public class BacklogController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Autowired
     private TaskValidator taskValidator;
@@ -199,6 +204,10 @@ public class BacklogController {
                 if(taskName.equals(tasks.get(i))) {
                     index = i;
                 }
+            }
+
+            for(Comment comment : tasksByCurrentProject.get(index).getComments()){
+                commentService.deleteById(comment.getId());
             }
             taskService.deleteByTaskName(tasksByCurrentProject.get(index).getTaskName());
         }

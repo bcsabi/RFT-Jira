@@ -35,7 +35,7 @@
         </spring:bind>
         <spring:bind path="description" >
             <form:textarea id="task_description" type="text" path="description" placeholder="Task description" autofocus="true"></form:textarea>
-            <form:errors id="error" path="taskName"></form:errors>
+            <form:errors id="error" path="description"></form:errors>
         </spring:bind>
         <spring:bind path="type">
             <form:select id="task_type" path="type">

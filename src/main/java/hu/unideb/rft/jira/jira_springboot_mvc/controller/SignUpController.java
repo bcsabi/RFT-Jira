@@ -64,7 +64,7 @@ public class SignUpController {
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/backlog";
+        return "redirect:/manage_projects";
     }
 
 }

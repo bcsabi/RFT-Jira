@@ -18,9 +18,9 @@ public class CommentValidator implements Validator{
     public void validate(Object o, Errors errors) {
         Comment comment = (Comment) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comment", "NotEmpty");
-        if(comment.getComment().length() < 1){
-            errors.rejectValue("comment", "Size.commentForm.comment");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "commentText", "NotEmpty");
+        if(comment.getCommentText().length() > 3000){
+            errors.rejectValue("commentText", "Size.commentForm.comment");
         }
     }
 }
