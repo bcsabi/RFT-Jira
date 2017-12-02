@@ -47,10 +47,6 @@ input:focus{
     background: rgba(3,3,3,.3);
 }
 
-::-webkit-input-placeholder {
-    color: #ddd;
-}
-
 #welcome {
     font-family: "Arial";
     margin-top: 3%;

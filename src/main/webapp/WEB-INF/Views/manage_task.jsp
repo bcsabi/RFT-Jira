@@ -68,7 +68,9 @@
 
         <button class="save_task_modify_button" type="submit" name="modify">SAVE CHANGES</button>
     </form:form>
+</div>
 
+<div class="comment">
     <form:form method="POST" modelAttribute="commentForm">
         <spring:bind path="commentText">
             <form:textarea id="comment_text" type="text" path="commentText" placeholder="Comment" autofocus="true"></form:textarea>
@@ -78,9 +80,11 @@
     </form:form>
     <td>
         <c:forEach items="${comments}" var="comment">
-            <c:out value="${comment.commentText}"></c:out>
-            <c:out value="${comment.username}"></c:out>
-            <c:out value="${comment.dateTime}"></c:out>
+            <div class="loaded_comment">
+                <p id="loaded_comment_username"><c:out value="${comment.username}"></c:out></p>
+                <p id="loaded_comment_time"><c:out value="${comment.dateTime}"></c:out></p><br>
+                <p id="loaded_comment_text"><c:out value="${comment.commentText}"></c:out></p>
+            </div>
         </c:forEach>
     <td/>
 </div>

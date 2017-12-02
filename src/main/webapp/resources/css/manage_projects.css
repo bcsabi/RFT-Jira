@@ -193,6 +193,7 @@ input:focus, textarea:focus {
     border-radius: 4px;
     box-shadow: 5px 5px 1px rgba(3,3,3,0.5);
     overflow: hidden;
+    word-wrap: break-word;
 }
 
 .project:hover {

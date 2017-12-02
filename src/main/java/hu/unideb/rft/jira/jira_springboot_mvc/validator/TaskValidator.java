@@ -37,7 +37,7 @@ public class TaskValidator implements Validator{
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "NotEmpty");
-        if (task.getTaskName().length() >= 1000) {
+        if (task.getTaskName().length() >= 2900) {
             errors.rejectValue("description", "Size.taskForm.description");
         }
 

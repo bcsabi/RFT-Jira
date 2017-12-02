@@ -8,7 +8,7 @@
 .task_details {
     position: absolute;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     width: 1470px;
     border-radius: 5px;
     border: 1px solid rgba(3,3,3,0.25);
@@ -27,7 +27,7 @@
     font-family: Arial;
 }
 
-input, textarea, select{
+input, textarea, select, .loaded_comment {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -47,6 +47,11 @@ input, textarea, select{
     text-align: center;
     resize: none;
     width: 200px;
+}
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 3px 3px 10px #333;
+    background: rgba(3,3,3,0.3);
 }
 
 button {
@@ -114,3 +119,42 @@ label[for=task_type], label[for=task_status], label[for=task_priority], label[fo
     }
 }
 
+#comment_text {
+    margin-top: 420px;
+    margin-left: 10px;
+    height: 200px;
+    width: 1320px;
+}
+
+.create_comment_button {
+    margin-left: 530px;
+    margin-bottom: 30px;
+    width: 300px;
+}
+
+.loaded_comment {
+    color: white;
+    height: 100px;
+    width: 1320px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    background: rgba(3,3,3,0.5);
+    font-family: Arial;
+}
+
+#loaded_comment_username {
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+}
+
+#loaded_comment_time {
+    margin-top: 5px;
+    margin-right: 5px;
+    float: right;
+}
+
+#loaded_comment_text {
+    margin-top: 5px;
+    text-align: center;
+}

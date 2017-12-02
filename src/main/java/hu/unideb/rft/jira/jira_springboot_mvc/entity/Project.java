@@ -2,6 +2,7 @@ package hu.unideb.rft.jira.jira_springboot_mvc.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,7 @@ public class Project {
     private Long id;
     @Column(length = 100)
     private String projectName;
+    @Size(max = 3000)
     private String projectDescription;
     private String username;
     private Set<User> user;

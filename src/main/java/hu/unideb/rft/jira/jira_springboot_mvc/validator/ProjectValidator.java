@@ -37,7 +37,7 @@ public class ProjectValidator implements Validator{
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "projectDescription", "NotEmptyProject");
-        if (project.getProjectDescription().length() > 200)
+        if (project.getProjectDescription().length() > 2900)
         {
             errors.rejectValue("projectDescription","Size.projectForm.projectdescription");
         }

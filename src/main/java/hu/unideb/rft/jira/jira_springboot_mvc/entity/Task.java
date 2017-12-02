@@ -2,6 +2,7 @@ package hu.unideb.rft.jira.jira_springboot_mvc.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,7 @@ public class Task {
     private Long id;
     @Column(length = 100)
     private String taskName;
+    @Size(max = 3000)
     private String description;
     private String type;
     private String priority;
