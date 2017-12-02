@@ -17,9 +17,10 @@
     <li class="projects"><a class="projects" href="manage_projects">MANAGE PROJECTS</a></li>
     <li class="backlog"><a class="backlog" href="backlog?pid=${pid}">BACKLOG</a></li>
     <li class="taskboard"><a class="taskboard" href="taskboard?pid=${pid}">TASK BOARD</a></li>
+    <li class="team"><a class="team" href="team?pid=${pid}">TEAM</a></li>
 </ul>
 
-<h1 id="project_name_header">${projectName} task board</h1>
+<h1 id="project_name_header">${projectName}</h1>
 <div class="board">
     <h2 id="h01">To Do</h2>
     <div class="todo_board">

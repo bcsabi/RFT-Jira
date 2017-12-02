@@ -38,7 +38,19 @@ li a {
     font-family: "Arial";
 }
 
-.backlog, .taskboard, .projects{
+li .backlog, li .taskboard, li .projects, li .team {
+    width: 160px;
+}
+
+li .backlog, li .taskboard, li .user {
+    border-right: 1px solid green;
+}
+
+li .backlog {
+    border-left: 1px solid green;
+}
+
+.backlog, .taskboard, .projects, .team {
     float: left;
 }
 
@@ -46,7 +58,7 @@ li a {
     cursor: pointer;
 }
 
-.user:hover, .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover {
+.user:hover, .backlog:hover, .taskboard:hover, .logout:hover, .projects:hover, .team:hover {
     background-color: steelblue;
 }
 
