@@ -55,6 +55,11 @@
     overflow: hidden;
 }
 
+.todo_content:hover, .ready_content:hover, .in_progress_content:hover, .ready_for_test_content:hover, .done_content:hover {
+    background-color: #3cb0fd;
+    border: 1px solid #3cb0fd;
+}
+
 .board h2 {
     color: white;
     font-size: 20px;
@@ -102,4 +107,8 @@
     .board, #project_name_header {
         zoom: 90%;
     }
+}
+
+a {
+    text-decoration:none;
 }
