@@ -55,18 +55,31 @@ button:hover {
     margin-top: 50px;
 }
 
+.users {
+    width: 200px;
+    margin-left: 580px;
+}
+
+#add_member_button {
+    width: 200px;
+    margin-left: 580px;
+}
+
 .members {
-    min-height: 500px;
+    min-height: 400px;
+    height: auto;
     width: 1320px;
     margin-left: 20px;
+    margin-top: 20px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    border: none;
-    border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    background: rgba(3,3,3,0.5);
+    border-radius: 5px;
+    border: 1px solid rgba(3,3,3,0.25);
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
 }
 
 #members {

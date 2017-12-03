@@ -31,7 +31,7 @@
         <input id="task_name" name="taskName" type="text" value="${currentTask.taskName}"><br>
 
         <label for="task_assigned_to">Assigned to:</label>
-        <input id="task_assigned_to" type="text" name="assignedTo" placeholder="Assigned to..." value="${currentTask.assignedTo} "><br>
+        <input id="task_assigned_to" type="text" name="assignedTo" placeholder="Assign to..." value="${currentTask.assignedTo} "><br>
 
         <label for="task_type">Type:</label>
         <select id="task_type" name="taskType">
@@ -63,7 +63,7 @@
         </select><br>
 
         <label for="task_votes">Points:</label>
-        <input id="task_votes" name="taskVotes" type="text" value="${currentTask.votesPoint}"><br>
+        <input id="task_votes" name="taskVotes" type="text" placeholder="Points" value="${currentTask.votesPoint}"><br>
 
         <textarea id="task_description" name="taskDescription">${currentTask.description}</textarea><br>
 
@@ -74,7 +74,7 @@
 <div class="comment">
     <form:form method="POST" modelAttribute="commentForm">
         <spring:bind path="commentText">
-            <form:textarea id="comment_text" type="text" path="commentText" placeholder="Comment" autofocus="true"></form:textarea>
+            <form:textarea id="comment_text" type="text" path="commentText" placeholder="Write a comment..."></form:textarea>
             <form:errors id="error" path="commentText"></form:errors>
         </spring:bind>
         <button class="create_comment_button" type="submit" name="create_comment">CREATE COMMENT</button>

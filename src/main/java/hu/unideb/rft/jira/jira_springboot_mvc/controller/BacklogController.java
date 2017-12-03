@@ -92,8 +92,8 @@ public class BacklogController {
         model.addAttribute("donec",(int) donec);
         model.addAttribute("donepoints",(int) donepoints);
         model.addAttribute("allpoints",(int) allpoints);
-        double percentage = ((donepoints / tasksByCurrentProject.size()) * 100);
-        model.addAttribute("percentage",Math.round(percentage));
+        double percentage = ((donec / tasksByCurrentProject.size()) * 100);
+        model.addAttribute("percentage", Math.round(percentage));
 
         return "backlog";
     }

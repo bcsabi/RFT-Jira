@@ -21,8 +21,14 @@
 </ul>
 
 <h1 id="project_name_header">${projectName}</h1>
+<div class="add_member">
+    <select class="users">
+        <option value="" disabled selected style="display: none">Select user to add...</option>
+    </select>
+    <button id="add_member_button" type="submit">ADD MEMBER</button>
+</div>
 <div class="members">
-    <p id="members">Members</p>
+    <h2 id="members">Members</h2>
 </div>
 
 

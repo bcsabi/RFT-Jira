@@ -56,7 +56,7 @@
             </form:select>
         </spring:bind>
         <spring:bind path="taskName" >
-            <form:input id="votes" type="text" path="votesPoint" placeholder="Votes" autofocus="true"></form:input>
+            <form:input id="votes" type="text" path="votesPoint" placeholder="Point" autofocus="true"></form:input>
             <form:errors id="error" path="votesPoint"></form:errors>
         </spring:bind>
         <button class="create_task_button" type="submit" name="create">CREATE TASK</button>
