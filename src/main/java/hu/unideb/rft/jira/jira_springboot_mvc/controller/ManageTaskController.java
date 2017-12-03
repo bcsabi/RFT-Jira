@@ -61,6 +61,8 @@ public class ManageTaskController {
         Project project = projectService.findById(Long.parseLong(pid));
         model.addAttribute("pid", pid);
         model.addAttribute("projectName", project.getProjectName());
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
 
         model.addAttribute("taskForm", new Task());
 
@@ -77,6 +79,7 @@ public class ManageTaskController {
 
         Collections.sort(commentsByCurrentTask, Comparator.comparing(Comment::getDateTime));
         model.addAttribute("comments", commentsByCurrentTask);
+
 
         return "manage_task";
     }

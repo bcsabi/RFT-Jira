@@ -87,3 +87,32 @@ button:hover {
     color: white;
     text-align: center;
 }
+
+.member {
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+    color: white;
+    height: 120px;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 1px rgba(3,3,3,0.5);
+    overflow: hidden;
+}
+
+.member h4 {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: khaki;
+}
+
+.member p {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 12px;
+}

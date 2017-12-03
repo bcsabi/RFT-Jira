@@ -1,7 +1,6 @@
 package hu.unideb.rft.jira.jira_springboot_mvc.controller;
 
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.Project;
-import hu.unideb.rft.jira.jira_springboot_mvc.entity.Task;
 import hu.unideb.rft.jira.jira_springboot_mvc.entity.User;
 import hu.unideb.rft.jira.jira_springboot_mvc.repository.TaskRepository;
 import hu.unideb.rft.jira.jira_springboot_mvc.service.ProjectService;
@@ -18,8 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -46,9 +43,15 @@ public class TeamController {
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
+
         Project project = projectService.findById(Long.parseLong(pid));
         model.addAttribute("pid", pid);
         model.addAttribute("projectName", project.getProjectName());
+
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+
+
 
         return "team";
     }

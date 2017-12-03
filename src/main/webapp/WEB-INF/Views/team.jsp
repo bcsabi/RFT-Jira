@@ -24,11 +24,23 @@
 <div class="add_member">
     <select class="users">
         <option value="" disabled selected style="display: none">Select user to add...</option>
+        <c:forEach items="${users}" var="user" varStatus="loop">
+            <option value="${user.username}">${user.username}</option>
+        </c:forEach>
     </select>
     <button id="add_member_button" type="submit">ADD MEMBER</button>
 </div>
 <div class="members">
     <h2 id="members">Members</h2>
+    <c:forEach items="${users}" var="user" varStatus="loop">
+        <div class="member">
+            <h4>${user.username}</h4>
+            <p>Assigned tasks:</p>
+            <p>Done tasks::</p>
+            <p>All points:</p>
+            <p>Done points:</p>
+        </div>
+    </c:forEach>
 </div>
 
 

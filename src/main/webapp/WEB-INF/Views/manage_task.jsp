@@ -31,7 +31,12 @@
         <input id="task_name" name="taskName" type="text" value="${currentTask.taskName}"><br>
 
         <label for="task_assigned_to">Assigned to:</label>
-        <input id="task_assigned_to" type="text" name="assignedTo" placeholder="Assign to..." value="${currentTask.assignedTo} "><br>
+        <select id="task_assigned_to"  name="assignedTo">
+            <option selected="selected" value="${currentTask.assignedTo}" style="display: none">${currentTask.assignedTo}</option>
+            <c:forEach items="${users}" var="user" varStatus="loop">
+                <option value="${user.username}">${user.username}</option>
+            </c:forEach>
+        </select><br>
 
         <label for="task_type">Type:</label>
         <select id="task_type" name="taskType">
