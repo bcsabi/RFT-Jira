@@ -67,7 +67,17 @@
         <input id="username" type="text" placeholder="username" autofocus="true" name="userToAdd">
         <button id="plus" type="submit" name="add"></button>
         <button id="save_modify_button" type="submit" name="modify">SAVE CHANGES</button>
-        <button id="delete_project_button" type="submit" name="delete">DELETE PROJECT</button>
+        <button id="delete_project_button" type="button">DELETE PROJECT</button>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Are you sure to delete the project?</p>
+                <button id="yes_button" type="submit" name="delete">YES</button>
+                <button id="no_button" type="button">NO</button>
+            </div>
+        </div>
+
     </form:form>
 </div>
 

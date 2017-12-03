@@ -164,4 +164,39 @@ public class ManageTaskController {
         return "redirect:/manage_task?pid=" + pid + "&taskID=" + taskID;
     }
 
+    @Transactional
+    @RequestMapping(value = "/manage_task", method = RequestMethod.POST, params = "delete")
+    public String deleteTask(@ModelAttribute("taskForm") Task taskForm,  @RequestParam("pid") String pid,
+                             @RequestParam("taskID") String taskID) {
+        Project project = projectService.findById(Long.parseLong(pid));
+
+        logger.info(project.getProjectName());
+        List<Task> tasksByCurrentProject = new ArrayList<>();
+        for(Task task : project.getTasks()){
+            tasksByCurrentProject.add(task);
+        }
+
+        int index = 0;
+        List<String> tasks = new ArrayList<>();
+        for(Task tsk : tasksByCurrentProject)
+            tasks.add(tsk.getTaskName());
+
+        taskID = taskID.replace(",", "");
+        String taskName = taskService.findById(Long.valueOf(taskID)).getTaskName();
+        if (tasks.contains(taskName)) {
+            for (int i = 0; i < tasks.size(); i++) {
+                if(taskName.equals(tasks.get(i))) {
+                    index = i;
+                }
+            }
+
+            for(Comment comment : tasksByCurrentProject.get(index).getComments()){
+                commentService.deleteById(comment.getId());
+            }
+            taskService.deleteByTaskName(tasksByCurrentProject.get(index).getTaskName());
+        }
+
+        return "redirect:/backlog?pid=" + pid;
+    }
+
 }

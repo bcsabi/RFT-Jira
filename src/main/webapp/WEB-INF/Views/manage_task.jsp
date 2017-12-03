@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/manage_task.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../resources/js/manage_task.js"></script>
+
     <title>RFT Jira</title>
 </head>
 <body>
@@ -72,7 +75,18 @@
 
         <textarea id="task_description" name="taskDescription">${currentTask.description}</textarea><br>
 
-        <button class="save_task_modify_button" type="submit" name="modify">SAVE CHANGES</button>
+        <button class="save_task_modify_button" type="submit" name="modify">SAVE CHANGES</button><br>
+        <button class="delete_task_button" id="delete_task_button" type="button">DELETE TASK</button>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Are you sure to delete the task?</p>
+                <button id="yes_button" type="submit" name="delete">YES</button>
+                <button id="no_button" type="button">NO</button>
+            </div>
+        </div>
+
     </form:form>
 </div>
 

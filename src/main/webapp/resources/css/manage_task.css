@@ -81,6 +81,11 @@ button:hover {
     margin-left: 20px;
 }
 
+.delete_task_button {
+    width: 320px;
+    margin-left: 20px;
+}
+
 #task_name, #task_type, #task_status, #task_votes, #task_assigned_to, #task_priority {
     position: relative;
     margin-left: 30px;
@@ -107,10 +112,10 @@ label[for=task_type], label[for=task_status], label[for=task_priority], label[fo
 
 #task_description {
     position: absolute;
-    height: 350px;
-    width: 950px;
+    height: 400px;
+    width: 1050px;
     top: 80px;
-    margin-left: 500px;
+    margin-left: 400px;
 }
 
 @media (max-width: 1366px) {
@@ -120,7 +125,7 @@ label[for=task_type], label[for=task_status], label[for=task_priority], label[fo
 }
 
 #comment_text {
-    margin-top: 420px;
+    margin-top: 470px;
     margin-left: 10px;
     height: 200px;
     width: 1320px;
@@ -159,4 +164,70 @@ label[for=task_type], label[for=task_status], label[for=task_priority], label[fo
 #loaded_comment_text {
     margin-top: 20px;
     text-align: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5)
+}
+
+.modal-content {
+    background-color: rgba(3,3,3,0.6);
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    color: white;
+    text-align: center;
+    font-family: Verdana;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#yes_button, #no_button {
+    width: 100px;
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+#yes_button:hover, #no_button:hover{
+    background-color: #3cb0fd;
+}
+
+#no_button {
+    margin-left: 20px;
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
 }
