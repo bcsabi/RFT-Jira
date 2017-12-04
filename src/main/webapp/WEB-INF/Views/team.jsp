@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="../../resources/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../resources/css/team.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../resources/js/team.js"></script>
+
     <title>RFT Jira</title>
 </head>
 <body>
@@ -34,6 +37,7 @@
     <h2 id="members">Members</h2>
     <c:forEach items="${users}" var="user" varStatus="loop">
         <div class="member">
+            <span class="delete" id="delete">&times;</span>
             <h4>${user.username}</h4>
             <p>Assigned tasks:</p>
             <p>Done tasks::</p>
@@ -41,6 +45,15 @@
             <p>Done points:</p>
         </div>
     </c:forEach>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Are you sure to delete the user from the project?</p>
+            <button id="yes_button" type="submit" name="delete">YES</button>
+            <button id="no_button" type="button">NO</button>
+        </div>
+    </div>
 </div>
 
 
