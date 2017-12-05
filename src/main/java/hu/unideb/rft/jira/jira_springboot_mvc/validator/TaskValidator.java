@@ -41,6 +41,18 @@ public class TaskValidator implements Validator{
             errors.rejectValue("description", "Size.taskForm.description");
         }
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "type", "NotEmpty");
+        if(!task.getType().equals("Bug") && !task.getType().equals("Improvement") && !task.getType().equals("New feature")
+                && !task.getType().equals("Content")){
+            errors.rejectValue("type", "Value.taskForm.type");
+        }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "priority", "NotEmpty");
+        if(!task.getPriority().equals("Highest") && !task.getPriority().equals("High") && !task.getPriority().equals("Medium")
+                && !task.getPriority().equals("Low") && !task.getPriority().equals("Lowest")){
+            errors.rejectValue("priority", "Value.taskForm.priority");
+        }
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "votesPoint", "NotEmpty");
 
 

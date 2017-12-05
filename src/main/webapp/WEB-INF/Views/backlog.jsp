@@ -45,6 +45,7 @@
                 <form:option value="New feature">New feature</form:option>
                 <form:option value="Content">Content</form:option>
             </form:select>
+            <form:errors id="error" path="type"></form:errors>
         </spring:bind>
         <spring:bind path="priority">
             <form:select id="task_priority" path="priority">
@@ -54,6 +55,7 @@
                 <form:option value="Low">Low</form:option>
                 <form:option value="Lowest">Lowest</form:option>
             </form:select>
+            <form:errors id="error" path="priority"></form:errors>
         </spring:bind>
         <spring:bind path="taskName" >
             <form:input id="votes" type="text" path="votesPoint" placeholder="Point" autofocus="true"></form:input>
