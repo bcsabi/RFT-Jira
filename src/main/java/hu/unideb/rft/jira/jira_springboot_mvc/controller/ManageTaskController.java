@@ -125,6 +125,7 @@ public class ManageTaskController {
         currentTask.setPriority(taskPriority);
         currentTask.setStatus(taskStatus);
         currentTask.setVotesPoint(Integer.parseInt(taskVotes));
+        currentTask.setAssignedTo(assignedTo);
         taskService.save(currentTask);
 
         taskID = taskID.replace(",", "");

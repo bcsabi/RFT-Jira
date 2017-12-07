@@ -11,15 +11,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class TeamController {
@@ -42,6 +41,7 @@ public class TeamController {
     @RequestMapping(value = {"/team"}, method = RequestMethod.GET)
     public String taskboard(Model model, Principal user, @RequestParam(value = "pid") String pid) {
 
+        model.addAttribute("memberForm", new User());
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
@@ -65,8 +65,40 @@ public class TeamController {
         }
         model.addAttribute("users", users);
 
-
-
         return "team";
     }
+
+    @RequestMapping(value = "/team", method = RequestMethod.POST, params = "add")
+    public String addMember(@ModelAttribute("memberForm") User userForm, @RequestParam("pid") String pid,
+                            @RequestParam("member") String newMember){
+
+        Project project = projectService.findById(Long.parseLong(pid));
+        List<User> users = new ArrayList<>();
+        users.addAll(project.getUser());
+
+        users.add(userService.findByUsername(newMember));
+        Set<User> projectUsers = new HashSet<>(users);
+        project.setUser(projectUsers);
+        projectService.save(project);
+
+        return "redirect:/team?pid=" + pid;
+    }
+
+    @RequestMapping(value = "/team", method = RequestMethod.POST, params = "delete")
+    public String deleteMember(@ModelAttribute("memberForm") User userForm, @RequestParam("pid") String pid,
+                               @RequestParam("clickedMember") String member){
+
+        Project project = projectService.findById(Long.parseLong(pid));
+        List<User> users = new ArrayList<>();
+        users.addAll(project.getUser());
+
+        User userToDelete = userService.findByUsername(member);
+        users.remove(userToDelete);
+        Set<User> projectUsers = new HashSet<>(users);
+        project.setUser(projectUsers);
+        projectService.save(project);
+
+        return "redirect:/team?pid=" + pid;
+    }
+
 }

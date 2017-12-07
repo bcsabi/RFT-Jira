@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,38 +25,41 @@
 </ul>
 
 <h1 id="project_name_header">${projectName}</h1>
-<div class="add_member">
-    <select class="users">
-        <option value="" disabled selected style="display: none">Select user to add...</option>
-        <c:forEach items="${users}" var="user" varStatus="loop">
-            <option value="${user.username}">${user.username}</option>
-        </c:forEach>
-    </select>
-    <button id="add_member_button" type="submit">ADD MEMBER</button>
-</div>
-<div class="members">
-    <h2 id="members">Members</h2>
-    <c:forEach items="${projectUsers}" var="user" varStatus="loop">
-        <div class="member">
-            <span class="delete" id="delete">&times;</span>
-            <h4>${user.username}</h4>
-            <p>Assigned tasks:</p>
-            <p>Done tasks::</p>
-            <p>All points:</p>
-            <p>Done points:</p>
-        </div>
-    </c:forEach>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Are you sure to delete the user from the project?</p>
-            <button id="yes_button" type="submit" name="delete">YES</button>
-            <button id="no_button" type="button">NO</button>
-        </div>
+    <div class="add_member">
+        <form:form method="POST" modelAttribute="memberForm">
+            <select class="users" name="member">
+                <option value="" disabled selected style="display: none">Select user to add...</option>
+                <c:forEach items="${users}" var="user" varStatus="loop">
+                    <option value="${user.username}">${user.username}</option>
+                </c:forEach>
+            </select>
+            <button id="add_member_button" type="submit" name="add">ADD MEMBER</button>
+        </form:form>
     </div>
-</div>
+    <div class="members">
+        <form:form method="POST" modelAttribute="memberForm">
+            <h2 id="members">Members</h2>
+            <c:forEach items="${projectUsers}" var="user" varStatus="loop">
+                <div class="member">
+                    <span class="delete" id="delete" name="member">&times;</span>
+                    <h4>${user.username}</h4>
+                    <p>Assigned tasks:</p>
+                    <p>Done tasks::</p>
+                    <p>All points:</p>
+                    <p>Done points:</p>
+                </div>
+            </c:forEach>
 
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Are you sure to delete the user from the project?</p>
+                    <button id="yes_button" type="submit" name="delete">YES</button>
+                    <button id="no_button" type="button">NO</button>
+                </div>
+            </div>
+        </form:form>
+    </div>
 
 
 <div class="container">
