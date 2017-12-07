@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -48,7 +50,19 @@ public class TeamController {
         model.addAttribute("pid", pid);
         model.addAttribute("projectName", project.getProjectName());
 
-        List<User> users = userService.findAll();
+        List<User> projectUsers = new ArrayList<>();
+        for(User u : project.getUser()){
+            projectUsers.add(u);
+        }
+
+        model.addAttribute("projectUsers", projectUsers);
+
+        List<User> users = new ArrayList<>();
+        for(User ur : userService.findAll()){
+            if(!projectUsers.contains(ur)){
+                users.add(ur);
+            }
+        }
         model.addAttribute("users", users);
 
 

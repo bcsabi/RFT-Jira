@@ -35,7 +35,7 @@
 </div>
 <div class="members">
     <h2 id="members">Members</h2>
-    <c:forEach items="${users}" var="user" varStatus="loop">
+    <c:forEach items="${projectUsers}" var="user" varStatus="loop">
         <div class="member">
             <span class="delete" id="delete">&times;</span>
             <h4>${user.username}</h4>
