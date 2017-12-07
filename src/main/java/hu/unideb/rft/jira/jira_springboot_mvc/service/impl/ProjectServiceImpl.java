@@ -33,6 +33,11 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> findByUsername(String userName) { return projectRepository.findByUsername(userName); }
 
     @Override
+    public List<Project> findAll() {
+        return projectRepository.findAll();
+    }
+
+    @Override
     public Long deleteById(Long id) {
         return projectRepository.deleteById(id);
     }

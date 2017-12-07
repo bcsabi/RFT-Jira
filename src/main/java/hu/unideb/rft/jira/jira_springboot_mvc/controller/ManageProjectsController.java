@@ -46,7 +46,13 @@ public class ManageProjectsController {
         User currentUser = userService.findByUsername(user.getName());
         model.addAttribute("firstName",currentUser.getFirstName());
         model.addAttribute("lastName",currentUser.getLastName());
-        List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        //List<Project> currentProjects = projectService.findByUsername(currentUser.getUsername());
+        List<Project> currentProjects = new ArrayList<>();
+        for(Project p : projectService.findAll()){
+            if(p.getUser().contains(currentUser)){
+                currentProjects.add(p);
+            }
+        }
         model.addAttribute("projects",currentProjects);
 
         return "manage_projects";

@@ -87,7 +87,8 @@ public class ManageTaskController {
     @Modifying
     @Transactional
     @RequestMapping(value = "/manage_task", method = RequestMethod.POST, params = "modify")
-    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, @RequestParam("pid") String pid,
+    public String modifyTask(@ModelAttribute("taskForm") Task taskForm, Principal user,
+                             @RequestParam("pid") String pid,
                              @RequestParam("taskID") String taskID,
                              @RequestParam("taskName") String taskName,
                              @RequestParam("taskDescription") String taskDescription,
@@ -118,7 +119,12 @@ public class ManageTaskController {
                 }
             }
         }
+
         Task currentTask = tasksByCurrentProject.get(index);
+        if(!user.getName().equals(assignedTo) && !currentTask.getStatus().equals(taskStatus)){
+            return "redirect:/backlog?pid=" + pid;
+        }
+
         currentTask.setTaskName(taskName);
         currentTask.setDescription(taskDescription);
         currentTask.setType(taskType);

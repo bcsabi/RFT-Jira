@@ -10,5 +10,6 @@ public interface ProjectService {
     Project findById(Long id);
     Project findByProjectName(String projectName);
     List<Project> findByUsername(String userName);
+    List<Project> findAll();
     Long deleteById(Long id);
 }
