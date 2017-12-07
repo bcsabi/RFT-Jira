@@ -122,16 +122,22 @@ public class ManageTaskController {
 
         Task currentTask = tasksByCurrentProject.get(index);
         if(!user.getName().equals(assignedTo) && !currentTask.getStatus().equals(taskStatus)){
-            return "redirect:/backlog?pid=" + pid;
+            currentTask.setTaskName(taskName);
+            currentTask.setDescription(taskDescription);
+            currentTask.setType(taskType);
+            currentTask.setPriority(taskPriority);
+            currentTask.setVotesPoint(Integer.parseInt(taskVotes));
+            currentTask.setAssignedTo(assignedTo);
+        }else{
+            currentTask.setTaskName(taskName);
+            currentTask.setDescription(taskDescription);
+            currentTask.setType(taskType);
+            currentTask.setPriority(taskPriority);
+            currentTask.setStatus(taskStatus);
+            currentTask.setVotesPoint(Integer.parseInt(taskVotes));
+            currentTask.setAssignedTo(assignedTo);
         }
 
-        currentTask.setTaskName(taskName);
-        currentTask.setDescription(taskDescription);
-        currentTask.setType(taskType);
-        currentTask.setPriority(taskPriority);
-        currentTask.setStatus(taskStatus);
-        currentTask.setVotesPoint(Integer.parseInt(taskVotes));
-        currentTask.setAssignedTo(assignedTo);
         taskService.save(currentTask);
 
         taskID = taskID.replace(",", "");
